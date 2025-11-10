@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    
+
+}
+
+@model IEnumerable<PIV_PF_ProyectoFinal.Models.cliente>
+
+
+<h2>Index</h2>
+
+
+
+<h2>Crear Usuario</h2>
+
+<form id="registroClientes" action="/Cliente/CrearUsuario" method="post" class="form-clientes">
+
+    <div class="form-group">
+        <label for="IdCliente" class="form-label">ID:</label>
+        <input type="text" id="IdCliente" name="id_cliente" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label for="NombreCompleto" class="form-label">Nombre completo:</label>
+        <input type="text" id="NombreCompleto" name="nombre_completo" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label for="Correo" class="form-label">Correo electrónico:</label>
+        <input type="email" id="Correo" name="correo_electronico" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn-guardar">Guardar</button>
+    </div>
+
+</form>
+
+
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre completo</th>
+            <th>Correo electrónico</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.id_cliente</td>
+                <td>@u.nombre_completo</td>
+                <td>@u.correo_electronico</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Scripts/VistaClientes.js"></script>
