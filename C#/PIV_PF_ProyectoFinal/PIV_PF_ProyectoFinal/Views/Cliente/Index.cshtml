@@ -2,42 +2,17 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    <link rel="stylesheet" href="~/Content/Site.css" />
     
-
 }
 
 @model IEnumerable<PIV_PF_ProyectoFinal.Models.cliente>
 
 
-<h2>Index</h2>
+
+<h1>Index</h1>
 
 
-
-<h2>Crear Usuario</h2>
-
-<form id="registroClientes" action="/Cliente/CrearUsuario" method="post" class="form-clientes">
-
-    <div class="form-group">
-        <label for="IdCliente" class="form-label">ID:</label>
-        <input type="text" id="IdCliente" name="id_cliente" class="form-input" />
-    </div>
-
-    <div class="form-group">
-        <label for="NombreCompleto" class="form-label">Nombre completo:</label>
-        <input type="text" id="NombreCompleto" name="nombre_completo" class="form-input" />
-    </div>
-
-    <div class="form-group">
-        <label for="Correo" class="form-label">Correo electrónico:</label>
-        <input type="email" id="Correo" name="correo_electronico" class="form-input" />
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn-guardar">Guardar</button>
-    </div>
-
-</form>
+<a href="/Cliente/Create" class="btn-primary"><i class="bi bi-circle-plus"></i>Crear cliente</a>
 
 
 
@@ -49,6 +24,7 @@
             <th>ID</th>
             <th>Nombre completo</th>
             <th>Correo electrónico</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -58,6 +34,19 @@
                 <td>@u.id_cliente</td>
                 <td>@u.nombre_completo</td>
                 <td>@u.correo_electronico</td>
+                <td>
+                    <div class="btn-group-table">
+                        <button class="btn btn-danger btn-sm" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        <button class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-info btn-sm" title="Ver">
+                            <i class="bi bi-info-circle"></i>
+                        </button>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>

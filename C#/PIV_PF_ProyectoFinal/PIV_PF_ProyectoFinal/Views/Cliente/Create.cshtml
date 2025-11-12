@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="titulo-create">Agregar un Usuario nuevo</h1>
+
+
+<div class="contenedor-form-clientes">
+    <form action="/Cliente/CrearUsuario" method="post" class="form-clientes">
+
+        <div class="form-group">
+            <label for="IdCliente" class="form-label">Número de identificación:</label>
+            <input type="text" id="IdCliente" name="id_cliente" class="form-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="NombreCompleto" class="form-label">Nombre completo:</label>
+            <input type="text" id="NombreCompleto" name="nombre_completo" class="form-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="Correo" class="form-label">Correo electrónico:</label>
+            <input type="email" id="Correo" name="correo_electronico" class="form-input" />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-floppy"></i>Agregar
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </button>
+
+        </div>
+
+    </form>
+
+
+</div>

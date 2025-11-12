@@ -1,15 +1,21 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    const filas = document.querySelectorAll("table tbody tr");
+﻿
 
-    filas.forEach(fila => {
-        fila.addEventListener("click", function () {
+function ObtenerIDSeleccionado() {
+    let idSeleccionado = null;
 
-            filas.forEach(f => f.classList.remove("selected"));
-            this.classList.add("selected");
+    document.addEventListener("DOMContentLoaded", function () {
+        const filas = document.querySelectorAll("table tbody tr");
 
-            let id = this.cells[0].innerText;
-            console.log("Cliente seleccionado:", id);
+        filas.forEach(fila => {
+            fila.addEventListener("click", function () {
+
+                filas.forEach(f => f.classList.remove("selected"));
+                this.classList.add("selected");
+
+                idSeleccionado = this.cells[0].innerText;
+                console.log(idSeleccionado);
+            });
         });
     });
-});
+}
 

@@ -31,6 +31,13 @@ namespace PIV_PF_ProyectoFinal.Controllers
             }
         }
 
+      
+        //GET: cliente/Create
+        public ActionResult Create() {
+            return View();
+        
+        }
+
         [HttpPost]
         public ActionResult CrearUsuario(cliente c)
         {
