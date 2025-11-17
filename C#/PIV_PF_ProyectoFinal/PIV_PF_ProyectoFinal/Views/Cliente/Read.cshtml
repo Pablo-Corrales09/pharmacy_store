@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Read";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="boton_volver_a_gestion">
+    <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
+        <i class="bi bi-arrow-left-circle"></i> Volver
+    </button>
+</div>
+
+<div class="encabezado_clientes">
+    <div class="titulos_clientes">
+        <h1>Registro de clientes</h1>
+        <h2>Gestión fácil y segura de la información</h2>
+    </div>
+    <img id="portada_registro_clientes" src="~/Media/portada_registro_clientes.png" />
+</div>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre completo</th>
+            <th>Correo electrónico</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.id_cliente</td>
+                <td>@u.nombre_completo</td>
+                <td>@u.correo_electronico</td>
+                <td>
+                    <div class="btn-group-table">
+                        <button class="btn btn-info btn-sm" title="Ver"
+                                onclick="window.location='@Url.Action("Details", "Cliente", new { id = u.id_cliente })'">
+                            <i class="bi bi-info-circle"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<script src="~/Scripts/VistaClientes.js"></script>

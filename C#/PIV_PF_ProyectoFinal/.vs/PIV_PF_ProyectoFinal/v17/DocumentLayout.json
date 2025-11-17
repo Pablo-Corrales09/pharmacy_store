@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\views\\cliente\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\views\\cliente\\update.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\views\\cliente\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\views\\cliente\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\views\\cliente\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\views\\cliente\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\views\\cliente\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\views\\cliente\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\scripts\\vistaclientes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\scripts\\vistaclientes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\views\\cliente\\read.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\views\\cliente\\read.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\controllers\\clientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|c:\\users\\pc\\onedrive\\documentos\\proyects\\pharmacy_store\\c#\\piv_pf_proyectofinal\\piv_pf_proyectofinal\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\scripts\\vistaclientes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|solutionrelative:piv_pf_proyectofinal\\scripts\\vistaclientes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3DD1B56-9932-48CB-9647-145028986DE0}|PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal.csproj|C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\piv_pf_proyectofinal\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,45 +66,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "Update.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Update.cshtml",
+              "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Update.cshtml",
+              "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Update.cshtml",
+              "RelativeToolTip": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Update.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-16T23:00:29.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Details.cshtml",
+              "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Details.cshtml",
+              "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Details.cshtml",
+              "RelativeToolTip": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-16T18:39:49.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Read.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Read.cshtml",
+              "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Read.cshtml",
+              "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Read.cshtml",
+              "RelativeToolTip": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Read.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-16T17:16:37.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "cliente.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Models\\cliente.cs",
+              "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Models\\cliente.cs",
+              "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Models\\cliente.cs",
+              "RelativeToolTip": "PIV_PF_ProyectoFinal\\Models\\cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T14:58:39.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Index.cshtml",
+              "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Index.cshtml",
+              "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Index.cshtml",
+              "RelativeToolTip": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-16T14:53:45.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Site.css",
               "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Content\\Site.css",
               "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Content\\Site.css",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Content\\Site.css",
               "RelativeToolTip": "PIV_PF_ProyectoFinal\\Content\\Site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAGEBAAAAAAAAAAAswHQBAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-11-12T05:18:31.082Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Create.cshtml",
               "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Create.cshtml",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Views\\Cliente\\Create.cshtml",
               "RelativeToolTip": "PIV_PF_ProyectoFinal\\Views\\Cliente\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC0AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-10T18:49:40.315Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "VistaClientes.js",
               "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Scripts\\VistaClientes.js",
               "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Scripts\\VistaClientes.js",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Scripts\\VistaClientes.js",
               "RelativeToolTip": "PIV_PF_ProyectoFinal\\Scripts\\VistaClientes.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-10T06:25:24.365Z"
+              "WhenOpened": "2025-11-10T06:25:24.365Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Controllers\\HomeController.cs",
@@ -96,15 +182,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ClienteController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Controllers\\ClienteController.cs",
               "RelativeDocumentMoniker": "PIV_PF_ProyectoFinal\\Controllers\\ClienteController.cs",
               "ToolTip": "C:\\Users\\PC\\OneDrive\\Documentos\\Proyects\\Pharmacy_store\\C#\\PIV_PF_ProyectoFinal\\PIV_PF_ProyectoFinal\\Controllers\\ClienteController.cs",
               "RelativeToolTip": "PIV_PF_ProyectoFinal\\Controllers\\ClienteController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwCEAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAAAE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T23:09:40.135Z"
+              "WhenOpened": "2025-11-08T23:09:40.135Z",
+              "EditorCaption": ""
             }
           ]
         }

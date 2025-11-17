@@ -7,49 +7,42 @@
 
 @model IEnumerable<PIV_PF_ProyectoFinal.Models.cliente>
 
+<div class="Encabezado_Index_clientes">
+
+    <div class="encabezado_clientes">
+        <div class="titulos_clientes">
+            <h1>Gestión de clientes</h1>
+            <h2>Optimiza, Organiza y haz crecer tu farmacia</h2>
+        </div>
+        <img id="portada_registro_clientes" src="~/Media/gestion_de_clientes.png" />
+    </div>
+
+</div>
+
+<div class="grid-container">
+    <div class="grid-item color-green">
+        <a href="/Cliente/Create">
+            <i class="bi bi-person-add"></i>Agregar cliente
+        </a>
+    </div>
+
+    <div class="grid-item color-blue">
+        <a href="/Cliente/Read">
+            <i class="bi bi-people"></i>Ver clientes
+        </a>
+    </div>
+
+    <div class="grid-item color-yellow">
+        <a href="/Cliente/Update">
+            <i class="bi bi-pencil-square"></i>Actualizar cliente
+        </a>
+    </div>
+
+    <div class="grid-item color-red">
+        <a href="/Cliente/Delete">
+            <i class="bi bi-trash"></i>Eliminar cliente
+        </a>
+    </div>
+</div>
 
 
-<h1>Index</h1>
-
-
-<a href="/Cliente/Create" class="btn-primary"><i class="bi bi-circle-plus"></i>Crear cliente</a>
-
-
-
-
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre completo</th>
-            <th>Correo electrónico</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var u in Model)
-        {
-            <tr>
-                <td>@u.id_cliente</td>
-                <td>@u.nombre_completo</td>
-                <td>@u.correo_electronico</td>
-                <td>
-                    <div class="btn-group-table">
-                        <button class="btn btn-danger btn-sm" title="Eliminar">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                        <button class="btn btn-warning btn-sm" title="Editar">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <button class="btn btn-info btn-sm" title="Ver">
-                            <i class="bi bi-info-circle"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<script src="~/Scripts/VistaClientes.js"></script>

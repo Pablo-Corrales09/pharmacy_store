@@ -6,8 +6,7 @@
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+   will truncate terms that are too long to fit in the left column */
 .dl-horizontal dt {
     white-space: normal;
 }
@@ -20,7 +19,158 @@ textarea {
 }
 
 
-/*Tabla INDEX Cliente*/
+/*------------------------------------------Estilos Index/CLIENTES---------------------------------------------------------*/
+
+/* Encabezado Index */
+.Encabezado_Index_clientes {
+    display: flex;
+    padding: 50px 20px 50px 20px;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+    .Encabezado_Index_clientes h1 {
+        font-size: 45px;
+        text-align: center;
+    }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    padding: 50px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    border-bottom: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+/* Estilos para grid */
+.grid-item {
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    .grid-item:hover {
+        transition: all 0.3s ease;
+        transform: translateY(-4px) scale(1.03); 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .grid-item i {
+        font-size: 2rem;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+
+.color-green {
+    background-color: #28a745; 
+}
+    .color-green:hover {
+        background-color: #218838; 
+    }
+
+
+.color-blue {
+    background-color: #007bff; 
+}
+    .color-blue:hover {
+        background-color: #0069d9; 
+    }
+
+.color-yellow {
+    background-color: #FFB300;
+}
+
+    .color-yellow:hover {
+        background-color: #FFA000;
+    }
+
+.color-red {
+    background-color: #bb2d3b;
+}
+
+    .color-red:hover {
+        background-color: #b02a37;
+    }
+
+.color-gris {
+    background-color: #F5F5F5;
+}
+
+
+/*Enlaces con redirección al crud*/
+.grid-item a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+    .grid-item a:hover {
+        text-shadow: 1px 1px 1px black;
+    }
+
+/* Botones generales (formularios y enlaces) */
+.btn, a.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-success, a.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+    .btn-success:hover, a.btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+
+.btn-primary, a.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+    .btn-primary:hover, a.btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+    }
+
+.btn i, a.btn i {
+    margin-right: 8px;
+}
+
+/* Tabla INDEX Cliente */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -34,7 +184,7 @@ table {
         background-color: #2d4b75;
         color: white;
         padding: 10px;
-        text-align: left;
+        text-align: center;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
@@ -44,34 +194,70 @@ table {
         text-align: center;
     }
 
+    table tr:hover {
+        background-color: #f2f2f2;
+    }
+
+tr.selected {
+    background-color: #cfe3ff;
+}
+
+/* Botones de la tabla */
 .btn-group-table {
     display: flex;
     gap: 8px;
     justify-content: center;
 }
 
-table button {
-    border-radius: 4px;
-    padding: 5px 10px;
-}
-
-    table button:hover {
-        transform: scale(1.1);
-        transition: 0.2s;
+    .btn-group-table button {
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 45px;
+        min-height: 45px;
     }
 
-table tr:hover {
-    background-color: #f2f2f2;
-}
+        .btn-group-table button:hover {
+            transform: scale(1.1);
+        }
 
-tr.selected {
-    background-color: #cfe3ff;
-}
+        .btn-group-table button i {
+            margin: 0;
+            font-size: 18px;
+        }
 
-.titulo-create {
-    margin-top:5%;
-    text-align:center;
-}
+    /* Colores de botones de tabla */
+    .btn-group-table .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+        .btn-group-table .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    .btn-group-table .btn-warning {
+        background-color: #ffc107;
+        color: white;
+    }
+
+        .btn-group-table .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+    .btn-group-table .btn-info {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+        .btn-group-table .btn-info:hover {
+            background-color: #138496;
+        }
 
 
 /*Formulario creación de clientes*/
@@ -84,13 +270,13 @@ tr.selected {
 
 .form-clientes {
     width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
+    max-width: 1080px;
     padding: 15px;
     background-color: #f8f9fa;
     border-radius: 14px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
+
     .form-clientes:hover {
         box-shadow: 0 3px 18px rgba(0, 123, 255, 0.3);
     }
@@ -100,6 +286,11 @@ tr.selected {
     display: flex;
     flex-direction: column;
 }
+
+    .form-group:last-child {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
 .form-label {
     font-weight: 600;
@@ -126,45 +317,93 @@ tr.selected {
         background-color: #fff;
     }
 
-/* Botones */
-.form-group:last-child {
-    flex-direction: row;
-    justify-content:space-between;
+/*------------------------------------------ Estilos Portadas de la aplicación---------------------------------------------------------*/
+
+
+.encabezado_clientes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn {
-    padding: 12px 20px;
-    border: none;
+    .encabezado_clientes #portada_registro_clientes {
+        width: auto;
+        height: 300px;
+        flex-shrink: 0;
+    }
+
+.encabezado_clientes h1 {
+    font-size: 65px;
+}
+    
+    .encabezado_clientes h2{
+        font-size:25px;
+        text-align: center;
+    }
+
+
+.boton_volver_a_gestion {
+text-align:right;
+}
+
+/*------------------------------------------ Estilos Cliente/Details ---------------------------------------------------------*/
+
+.Cliente-titulo-details {
+    font-size: 45px;
+    padding: 30px;
+    margin: 20px 0 40px 0;
+    text-align: center;
+}
+
+.grid-container-details-client h2{
+    font-size:20px;
+}
+
+.grid-container-details-client {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+
+#foto_perfil {
+    width: auto;
+    height: 300px; 
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.grid-item-details-client {
+    display: flex;
+    flex-direction: column;
     border-radius: 14px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-right: 10px;
+    padding: 15px;
+ 
 }
 
-.btn-success {
-    background-color: #28a745;
-    color: white;
+.campo-cliente {
+    margin-bottom: 25px;   
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #444444;
+}
+.valor-dato {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   padding: 10px;
+   font-size: 25px;
 }
 
-    .btn-success:hover {
-        background-color: #218838;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
+.nombre-dato {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-.btn i {
-    margin-right: 10px;
+.grid-item-foto-perfil {
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 370px;
 }

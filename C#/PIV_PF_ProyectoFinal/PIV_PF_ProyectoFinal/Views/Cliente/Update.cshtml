@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Update</h1>
+
+
+
+<div class="contenedor-form-clientes">
+    <h2>Ingrese la identificación para buscar un cliente</h2>
+   
+    <form action="/Cliente/Details" method="get" class="form-clientes">
+
+        <div class="form-group">
+            <label for="IdCliente" class="form-label">Número de identificación:</label>
+            <input type="text" id="IdCliente" name="id" class="form-input" />
+        </div>
+
+        <div class="form-group botones-busqueda">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-search"></i> Buscar cliente
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </button>
+        </div>
+
+    </form>
+
+    <hr />
+
+
+    @if (Model != null && Model.id_cliente != 0)
+    {
+        <h3>Resultados de la Búsqueda</h3>
+        <div class="grid-container-details-client">
+            <div class="grid-item-details-client color-gris">
+                <h2>Detalles del registro</h2>
+
+                <div class="campo-cliente">
+                    <label class="nombre-dato">ID del Cliente:</label>
+                    <span class="valor-dato">@Model.id_cliente</span>
+                </div>
+
+                <div class="campo-cliente">
+                    <label class="nombre-dato">Nombre del Cliente:</label>
+                    <span class="valor-dato">@Model.nombre_completo</span>
+                </div>
+
+                <div class="campo-cliente">
+                    <label class="nombre-dato">Correo Electrónico:</label>
+                    <span class="valor-dato">@Model.correo_electronico</span>
+                </div>
+            </div>
+
+            <div class="grid-item-foto-perfil">
+                <img id="foto_perfil" src="~/Media/foto_perfil.png" alt="Foto de perfil" />
+            </div>
+        </div>
+    }
+</div>
