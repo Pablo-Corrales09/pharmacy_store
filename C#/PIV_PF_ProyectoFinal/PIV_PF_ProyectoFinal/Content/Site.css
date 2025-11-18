@@ -407,3 +407,30 @@ text-align:right;
     justify-content: center;
     min-height: 370px;
 }
+
+
+/*------------------------------------------ Estilos Cliente/Update ---------------------------------------------------------*/
+
+.busqueda-editar-clientes {
+    display: flex;
+    justify-content: center;
+    margin-block: 50px;
+}
+
+.resultado-busqueda-cliente h3 {
+    text-align: center;
+    margin-block: 70px;
+    font-size: 30px;
+}
+
+.resultado-busqueda-cliente input {
+    width: 800px !important;
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+

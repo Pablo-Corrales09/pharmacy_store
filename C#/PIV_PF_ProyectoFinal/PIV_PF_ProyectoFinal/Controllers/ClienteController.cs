@@ -67,34 +67,34 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
 
+        //Obtener objeto cliente por id
+        private cliente ObtenerCliente(string id)
+        {
+            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    return null;
+                }
+                return db.cliente.Find(id);               
+            }
+        }
+
+
         //Muestra los detalles de un cliente en particular
         //GET: cliente/Details
         public ActionResult Details(string id)
         {
-            // 1. Validar si el ID está vacío antes de buscar
-            if (string.IsNullOrEmpty(id))
-            {
-                // Si no hay ID, volvemos a la vista sin un mensaje de error
-                return View("Buscar");
-            }
-
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
-            {
-                var cliente = db.cliente.Find(id);
+                var cliente = ObtenerCliente(id);
 
                 if (cliente == null)
                 {
-                    // 2. Si no se encuentra, establecemos un indicador de error
-                    ViewBag.ClienteNoEncontrado = true;
-
-                    // Volvemos a la misma vista, pero con el indicador de error
-                    return View("Buscar");
+                    return View("Details");
                 }
+                return View("Details", cliente);
 
-                // 3. Si se encuentra, enviamos el cliente a la vista (para mostrar los detalles)
-                return View("Buscar", cliente);
-            }
         }
+
 
         // GET: Cliente/Update
         public ActionResult Update()
@@ -102,6 +102,85 @@ namespace PIV_PF_ProyectoFinal.Controllers
             return View();
         }
 
+        //GET: cliente/BuscarEdit
+        public ActionResult BuscarEdit(string id) {
+            var cliente = ObtenerCliente(id);
+            if (cliente == null)
+            {
+                return View("Update");
+            }
+            return View("Update",cliente);
+        }
+
+
+        //GET: cliente/Editarcliente
+        public ActionResult EditarCliente()
+        {
+            return View();
+
+        }
+
+        //POST: cliente/EditarCliente
+        [HttpPost]
+        public ActionResult EditarCliente(string id, string nombre_completo, string correo_electronico) {
+
+            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            {
+                var cliente = db.cliente.Find(id);
+                if (cliente == null)
+                {
+                    return View("Update");
+                }
+                cliente.nombre_completo = nombre_completo;
+                cliente.correo_electronico = correo_electronico;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
+
+        //GET: cliente/Delete
+        public ActionResult Delete()
+        {
+            return View();
+
+        }
+
+        //GET: cliente/EliminarCliente
+        public ActionResult EliminarCliente()
+        {
+            return View();
+
+        }
+
+        //POST: cliente/EliminarCliente
+        [HttpPost]
+        public ActionResult EliminarCliente(string id)
+        {
+
+            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            {
+                var cliente = db.cliente.Find(id);
+                if (cliente == null)
+                {
+                    return View("Delete");
+                }
+                db.cliente.Remove(cliente);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
+        //GET: cliente/BuscarDelete
+        public ActionResult BuscarDelete(string id)
+        {
+            var cliente = ObtenerCliente(id);
+            if (cliente == null)
+            {
+                return View("Delete");
+            }
+            return View("Delete", cliente);
+        }
 
     }//Fin clienteController
 }//Fin namespace

@@ -1,24 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 @if (Model == null)
 
 {
     <div class="encabezado_clientes">
         <div class="titulos_clientes">
-            <h1>Editar Clientes</h1>
+            <h1>Eliminar Clientes</h1>
             <h2>Modifica y gestiona la información de tus clientes fácilmente</h2>
         </div>
-        <img id="portada_registro_clientes" src="~/Media/editar_clientes.png" />
+        <img id="portada_registro_clientes" src="~/Media/eliminar_clientes.png" />
     </div>
 
     <div class="busqueda-editar-clientes">
-        <form action="/Cliente/BuscarEdit" method="get" class="form-clientes">
+        <form action="/Cliente/BuscarDelete" method="get" class="form-clientes">
             <h3>Ingrese el número de identificación de un cliente para realizar la busqueda</h3>
 
             <div class="form-group">
@@ -43,7 +41,8 @@
 {
     <div class="resultado-busqueda-cliente">
         <h3>Resultados de la Búsqueda</h3>
-        <form action="/Cliente/EditarCliente" method="post">
+        <form action="/Cliente/EliminarCliente" method="post">
+            <input type="hidden" name="id" value="@Model.id_cliente" />
             <div class="grid-container-details-client">
                 <div class="grid-item-details-client color-gris">
                     <h2>Detalles del registro</h2>
@@ -53,17 +52,17 @@
                     </div>
                     <div class="campo-cliente">
                         <label class="nombre-dato">Nombre del Cliente:</label>
-                        <input type="text" name="nombre_completo" value="@Model.nombre_completo" class="valor-dato" />
+                        <label class="valor-dato">@Model.nombre_completo</label>
                     </div>
                     <div class="campo-cliente">
                         <label class="nombre-dato">Correo Electrónico:</label>
-                        <input type="email" name="correo_electronico" value="@Model.correo_electronico" class="valor-dato" />
+                        <label class="valor-dato">@Model.correo_electronico</label>
                     </div>
                 </div>
                 <div class="grid-item-foto-perfil">
                     <img id="foto_perfil" src="~/Media/foto_perfil.png" alt="Foto de perfil" />
                 </div>
-                <button type="submit" class="btn btn-danger">Editar cliente</button>
+                <button type="submit" class="btn btn-danger">Eliminar cliente</button>
                 <a class="btn btn-primary" href="@Url.Action("Index", "Cliente")">Volver</a>
             </div>
 
