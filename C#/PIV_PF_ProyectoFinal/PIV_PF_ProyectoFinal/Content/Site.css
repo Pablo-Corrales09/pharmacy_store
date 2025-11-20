@@ -272,7 +272,6 @@ tr.selected {
     width: 90%;
     max-width: 1080px;
     padding: 15px;
-    background-color: #f8f9fa;
     border-radius: 14px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
@@ -299,7 +298,7 @@ tr.selected {
     font-size: 15px;
 }
 
-.form-input {
+.form-control {
     width: 100%;
     max-width: 1200px;
     padding: 12px 15px;
@@ -310,12 +309,6 @@ tr.selected {
     transition: all 0.3s;
 }
 
-    .form-input:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-        background-color: #fff;
-    }
 
 /*------------------------------------------ Estilos Portadas de la aplicación---------------------------------------------------------*/
 

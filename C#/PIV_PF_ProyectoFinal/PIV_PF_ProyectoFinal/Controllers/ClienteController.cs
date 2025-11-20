@@ -1,4 +1,5 @@
 ﻿using PIV_PF_ProyectoFinal.Models;
+using PIV_PF_ProyectoFinal.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -29,26 +30,38 @@ namespace PIV_PF_ProyectoFinal.Controllers
       
         //GET: cliente/Create
         public ActionResult Create() {
-            return View();
+            return View(new AgregaClientes());
         
         }
 
         //Agrega un registro en la tabla 'Cliente' dentro de la base de datos
         //POST: cliente/Create
         [HttpPost]
-        public ActionResult CrearCliente(cliente c)
+        public ActionResult CrearCliente(AgregaClientes c)
         {
             try
             {
+                if (!ModelState.IsValid) {
+                    return View("Create", c);
+                }
+
                 using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
                 {
-                    db.cliente.Add(c);
+                    cliente nuevoCliente = new cliente();
+                    nuevoCliente.id_cliente = c.id_cliente;
+                    nuevoCliente.nombre_completo = c.nombre_completo.ToUpper();
+                    nuevoCliente.correo_electronico = c.correo_electronico.ToLower();
+                    db.cliente.Add(nuevoCliente);
                     db.SaveChanges();
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Cliente agregado exitosamente.";
                 }
-                return RedirectToAction("Index");
+                return View("Create");
             }
-            catch { 
-                return View("Error");
+            catch (Exception ex){
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Error al agregar el cliente: " + ex.Message;
+                return View("Create", c);
 
             }
         }

@@ -1,8 +1,54 @@
 ﻿
+@model PIV_PF_ProyectoFinal.ViewModels.AgregaClientes
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@if (ViewBag.ValorMensaje == 1)
+{
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success">@ViewBag.MensajeProceso</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (ViewBag.ValorMensaje == 0)
+    {
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Mensaje</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger">@ViewBag.MensajeProceso</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
 
 
 <div class="encabezado_clientes">
@@ -19,18 +65,21 @@
     <form action="/Cliente/CrearCliente" method="post" class="form-clientes">
 
         <div class="form-group">
-            <label for="IdCliente" class="form-label">Número de identificación:</label>
-            <input type="text" id="IdCliente" name="id_cliente" class="form-input" />
+            @Html.LabelFor(c => c.id_cliente, new { @class = "form-label" })
+            @Html.TextBoxFor(c => c.id_cliente, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(c => c.id_cliente, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
         <div class="form-group">
-            <label for="NombreCompleto" class="form-label">Nombre completo:</label>
-            <input type="text" id="NombreCompleto" name="nombre_completo" class="form-input" />
+            @Html.LabelFor(c => c.nombre_completo, new { @class = "form-label" })
+            @Html.TextBoxFor(c => c.nombre_completo, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(c => c.nombre_completo, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
         <div class="form-group">
-            <label for="Correo" class="form-label">Correo electrónico:</label>
-            <input type="email" id="Correo" name="correo_electronico" class="form-input" />
+            @Html.LabelFor(c => c.correo_electronico, new { @class = "form-label" })
+            @Html.TextBoxFor(c => c.correo_electronico, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(c => c.correo_electronico, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
         <div class="form-group">
@@ -47,3 +96,22 @@
 
 
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+            {
+                <text>
+                $('#myModal').modal('show');
+                </text>
+            }
+
+            $('#myModal').on('hidden.bs.modal', function() {
+                $('#id_cliente').val('');
+                $('#nombre_completo').val('');
+                $('#correo_electronico').val('');
+            });
+        });
+    </script>
+}
