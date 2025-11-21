@@ -2,6 +2,7 @@
 using PIV_PF_ProyectoFinal.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
@@ -70,10 +71,18 @@ namespace PIV_PF_ProyectoFinal.Controllers
         //GET: cliente/Read
         public ActionResult Read()
         {
+            List < ListaClientes > listCli = null;
             using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
             {
-                var cliente = db.cliente.ToList();
-                return View(cliente);
+                listCli = (from client in db.cliente
+                            select new ListaClientes
+                            {
+                                id_cliente = client.id_cliente,
+                                nombre_completo = client.nombre_completo,
+                                correo_electronico = client.correo_electronico
+                            }).ToList();
+
+                return View(listCli);
 
             }
 
@@ -116,13 +125,33 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
         //GET: cliente/BuscarEdit
-        public ActionResult BuscarEdit(string id) {
-            var cliente = ObtenerCliente(id);
-            if (cliente == null)
+        public ActionResult BuscarEdit(string id)
+        {
+            try {
+                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                {
+                    var cliente = db.cliente.Find(id);
+                    if (cliente == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "Cliente no encontrado";
+                        return View("Update");
+                    }
+                    var clienteViewModel = new EditarCliente
+                    {
+                        id_cliente = cliente.id_cliente,
+                        nombre_completo = cliente.nombre_completo,
+                        correo_electronico = cliente.correo_electronico
+                    };
+                    return View("Update", clienteViewModel);
+                }                
+            }
+            catch (Exception ex) 
             {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Error al buscar el cliente: ";
                 return View("Update");
             }
-            return View("Update",cliente);
         }
 
 
@@ -135,20 +164,34 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //POST: cliente/EditarCliente
         [HttpPost]
-        public ActionResult EditarCliente(string id, string nombre_completo, string correo_electronico) {
-
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+        public ActionResult EditarCliente(EditarCliente ClienteEdit) {
+           
+            try
             {
-                var cliente = db.cliente.Find(id);
-                if (cliente == null)
+                if (!ModelState.IsValid)
                 {
                     return View("Update");
                 }
-                cliente.nombre_completo = nombre_completo;
-                cliente.correo_electronico = correo_electronico;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                {    
+                    var clienteExistente = db.cliente.Find(ClienteEdit.id_cliente);
+                    clienteExistente.nombre_completo= ClienteEdit.nombre_completo.ToUpper();
+                    clienteExistente.correo_electronico= ClienteEdit.correo_electronico.ToLower();
+                    db.SaveChanges();
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Cliente editado exitosamente.";   
+                }
+                return View("Update");
             }
+                catch (Exception) 
+                {
+                    ViewBag.ValorMensaje = 0;
+                    ViewBag.MensajeProceso = "Error al editar el cliente: ";
+                    return View("Update", ClienteEdit);
+                }
+            
         }
 
 

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PIV_PF_ProyectoFinal.ViewModels
 {
-    public class AgregaClientes
+    public class EditarCliente
     {
         [Required]
         [DisplayName("Número de identificación")]
@@ -20,5 +20,6 @@ namespace PIV_PF_ProyectoFinal.ViewModels
         [Required]
         [DisplayName("Correo electrónico")]
         public string correo_electronico { get; set; }
+
     }
 }
