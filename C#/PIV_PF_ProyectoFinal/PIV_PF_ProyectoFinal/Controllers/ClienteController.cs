@@ -28,8 +28,9 @@ namespace PIV_PF_ProyectoFinal.Controllers
             }
         }
 
-      
+
         //GET: cliente/Create
+        [HttpGet]
         public ActionResult Create() {
             return View(new AgregaClientes());
         
@@ -69,6 +70,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //Carga la vista 'Read' con el listado de clientes registrados
         //GET: cliente/Read
+        [HttpGet]
         public ActionResult Read()
         {
             List < ListaClientes > listCli = null;
@@ -105,6 +107,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //Muestra los detalles de un cliente en particular
         //GET: cliente/Details
+        [HttpGet]
         public ActionResult Details(string id)
         {
                 var cliente = ObtenerCliente(id);
@@ -119,13 +122,15 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
 
         // GET: Cliente/Update
+        [HttpGet]
         public ActionResult Update()
         {
             return View();
         }
 
         //GET: cliente/BuscarEdit
-        public ActionResult BuscarEdit(string id)
+        [HttpGet]
+        public ActionResult BuscarCliente(string id, string sourceView)
         {
             try {
                 using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
@@ -135,18 +140,32 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     {
                         ViewBag.ValorMensaje = 0;
                         ViewBag.MensajeProceso = "Cliente no encontrado";
-                        return View("Update");
+                        return View(sourceView);
                     }
+                    
+                    if (sourceView == "Update") { 
                     var clienteViewModel = new EditarCliente
-                    {
-                        id_cliente = cliente.id_cliente,
-                        nombre_completo = cliente.nombre_completo,
-                        correo_electronico = cliente.correo_electronico
-                    };
-                    return View("Update", clienteViewModel);
-                }                
-            }
-            catch (Exception ex) 
+                     {
+                       id_cliente = cliente.id_cliente,
+                       nombre_completo = cliente.nombre_completo,
+                       correo_electronico = cliente.correo_electronico
+                       };
+                        return View(sourceView, clienteViewModel);
+                    }
+                    else if(sourceView == "Delete") { 
+                            var clienteViewModel = new EliminarCliente
+                            {
+                                id_cliente = cliente.id_cliente,
+                                nombre_completo = cliente.nombre_completo,
+                                correo_electronico = cliente.correo_electronico
+                            };
+                            return View(sourceView, clienteViewModel);
+                        }
+                    return View("Update");
+                    }
+                        
+                }                            
+            catch (Exception) 
             {
                 ViewBag.ValorMensaje = 0;
                 ViewBag.MensajeProceso = "Error al buscar el cliente: ";
@@ -156,6 +175,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
 
         //GET: cliente/Editarcliente
+        [HttpGet]
         public ActionResult EditarCliente()
         {
             return View();
@@ -196,6 +216,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
 
         //GET: cliente/Delete
+        [HttpGet]
         public ActionResult Delete()
         {
             return View();
@@ -203,6 +224,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
         //GET: cliente/EliminarCliente
+        [HttpGet]
         public ActionResult EliminarCliente()
         {
             return View();
@@ -210,32 +232,35 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
         //POST: cliente/EliminarCliente
-        [HttpPost]
-        public ActionResult EliminarCliente(string id)
+        [HttpPost]     
+        public ActionResult EliminarCliente(EliminarCliente ClienteExistente)
         {
 
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            try
             {
-                var cliente = db.cliente.Find(id);
-                if (cliente == null)
+                if (!ModelState.IsValid)
                 {
                     return View("Delete");
                 }
-                db.cliente.Remove(cliente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-        }
 
-        //GET: cliente/BuscarDelete
-        public ActionResult BuscarDelete(string id)
-        {
-            var cliente = ObtenerCliente(id);
-            if (cliente == null)
-            {
+                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                {
+                    var clienteEliminar = db.cliente.Find(ClienteExistente.id_cliente);
+                    db.cliente.Remove(clienteEliminar);
+                    db.SaveChanges();
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Cliente eliminado exitosamente.";
+                }
                 return View("Delete");
             }
-            return View("Delete", cliente);
+            catch (Exception)
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Error al eliminar el cliente.";
+                return View("Delete", ClienteExistente);
+            }
+
         }
 
     }//Fin clienteController

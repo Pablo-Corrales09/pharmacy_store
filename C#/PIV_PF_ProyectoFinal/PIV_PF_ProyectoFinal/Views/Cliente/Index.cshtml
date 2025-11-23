@@ -7,42 +7,44 @@
 
 @model IEnumerable<PIV_PF_ProyectoFinal.Models.cliente>
 
-<div class="Encabezado_Index_clientes">
 
-    <div class="encabezado_clientes">
-        <div class="titulos_clientes">
-            <h1>Gestión de clientes</h1>
-            <h2>Optimiza, Organiza y haz crecer tu farmacia</h2>
+<div class="contenedor-opciones-index">
+    <div class="Encabezado_Index_clientes">
+
+        <div class="encabezado_clientes">
+            <div class="titulos_clientes">
+                <h1>Gestión de clientes</h1>
+                <h2>Optimiza, Organiza y haz crecer tu farmacia</h2>
+            </div>
+            <img id="portada_registro_clientes" src="~/Media/gestion_de_clientes.png" />
         </div>
-        <img id="portada_registro_clientes" src="~/Media/gestion_de_clientes.png" />
+
     </div>
 
+    <div class="grid-container">
+        <div class="grid-item color-green">
+            <a href="/Cliente/Create">
+                <i class="bi bi-person-add"></i>Agregar cliente
+            </a>
+        </div>
+
+        <div class="grid-item color-blue">
+            <a href="/Cliente/Read">
+                <i class="bi bi-people"></i>Ver clientes
+            </a>
+        </div>
+
+        <div class="grid-item color-yellow">
+            <a href="/Cliente/Update">
+                <i class="bi bi-pencil-square"></i>Actualizar cliente
+            </a>
+        </div>
+
+        <div class="grid-item color-red">
+            <a href="/Cliente/Delete">
+                <i class="bi bi-trash"></i>Eliminar cliente
+            </a>
+        </div>
+    </div>
 </div>
-
-<div class="grid-container">
-    <div class="grid-item color-green">
-        <a href="/Cliente/Create">
-            <i class="bi bi-person-add"></i>Agregar cliente
-        </a>
-    </div>
-
-    <div class="grid-item color-blue">
-        <a href="/Cliente/Read">
-            <i class="bi bi-people"></i>Ver clientes
-        </a>
-    </div>
-
-    <div class="grid-item color-yellow">
-        <a href="/Cliente/Update">
-            <i class="bi bi-pencil-square"></i>Actualizar cliente
-        </a>
-    </div>
-
-    <div class="grid-item color-red">
-        <a href="/Cliente/Delete">
-            <i class="bi bi-trash"></i>Eliminar cliente
-        </a>
-    </div>
-</div>
-
 

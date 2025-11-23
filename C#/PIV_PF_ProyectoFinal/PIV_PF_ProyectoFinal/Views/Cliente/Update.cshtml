@@ -8,7 +8,7 @@
 
 @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
 {
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-between align-items-center">
@@ -40,7 +40,8 @@
     </div>
 
     <div class="busqueda-editar-clientes">
-        <form action="/Cliente/BuscarEdit" method="get" class="form-clientes">
+        <form action="/Cliente/BuscarCliente" method="get" class="form-clientes">
+            <input type="hidden" name="sourceView" value="Update" />
             <h3>Ingrese el número de identificación de un cliente para realizar la busqueda</h3>
 
             <div class="form-group">
