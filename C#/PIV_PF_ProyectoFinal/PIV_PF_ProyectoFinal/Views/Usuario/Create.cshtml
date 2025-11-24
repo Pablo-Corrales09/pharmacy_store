@@ -1,8 +1,122 @@
 ﻿
+@model PIV_PF_ProyectoFinal.ViewModels.AgregaUsuarios
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+@if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert @(ViewBag.ValorMensaje == 1 ? "alert-success" : "alert-danger")">
+                        @ViewBag.MensajeProceso
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
+
+<div class="encabezado_clientes">
+    <div class="titulos_clientes">
+        <h1>Agregar personal</h1>
+        <h2>Incorporación de talento clave y valioso</h2>
+    </div>
+    <img id="portada_registro_clientes" src="~/Media/portada_registro_personal.png" />
+</div>
+
+
+
+<div class="contenedor-form-clientes">
+    <form action="/Usuario/CrearUsuario" method="post" class="form-clientes">
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.id_usuario, new { @class = "form-label" })
+            @Html.TextBoxFor(u => u.id_usuario, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.id_usuario, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.nombre_completo, new { @class = "form-label" })
+            @Html.TextBoxFor(u => u.nombre_completo, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.nombre_completo, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.correo_electronico, new { @class = "form-label" })
+            @Html.TextBoxFor(u => u.correo_electronico, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.correo_electronico, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.tipo_usuario, new { @class = "form-label" })
+            @Html.DropDownListFor(u => u.tipo_usuario, new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Administrador", Value = "Administrador" },
+                new SelectListItem { Text = "Vendedor", Value = "Vendedor" },
+                new SelectListItem { Text = "Contabilidad", Value = "Contabilidad" }
+            }, "---------- Seleccione un tipo de usuario ---------", new
+            { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.tipo_usuario, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.estado, new { @class = "form-label" })
+            @Html.DropDownListFor(u => u.estado, new List<SelectListItem>
+             {
+                 new SelectListItem { Text = "Activo", Value = "Activo" },
+                 new SelectListItem { Text = "Inactivo", Value = "Inactivo" }
+             }, "---------- Seleccione el estado del usuario ---------", new
+             { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.estado, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-floppy"></i>Agregar
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.location='/Usuario/Index'">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </button>
+
+        </div>
+
+    </form>
+
+
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+            {
+                <text>
+                $('#myModal').modal('show');
+                </text>
+            }
+
+            $('#myModal').on('hidden.bs.modal', function() {
+                $('#id_usuario').val('');
+                $('#nombre_completo').val('');
+                $('#correo_electronico').val('');
+                $('#tipo_usuario').val('');
+                $('#estado').val('');
+            });
+        });
+    </script>
+}

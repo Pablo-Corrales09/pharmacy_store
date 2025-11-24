@@ -25,17 +25,17 @@ textarea {
     border-radius: 14px;
     border: 3px solid black;
     padding: 50px 20px;
-    height: 83vh;
+    min-height: 83vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 30px;
 }
 
 /* Encabezado Index */
 .Encabezado_Index_clientes {
     display: flex;
-    padding: 40px 20px 15px 20px;
+    padding: 5px 20px 0px 20px;
     justify-content: center;
     align-items: center;
 }
@@ -49,7 +49,7 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    padding: 10px 30px 50px 30px;
+    padding: 0px 30px 0px 30px;
     align-items: center;
 }
 
@@ -174,14 +174,46 @@ textarea {
 
 /* -------------------------------------------------------------------------------- Estilos Tabla --------------------------------------------------------------- */
 
+.contenedor-opciones-index {
+    border-radius: 14px;
+    border: 3px solid black;
+    padding: 50px 20px;
+    min-height: 83vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.contenedor_personal_medico {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+
+
 .table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
     font-size: 15px;
     border-radius: 14px;
-    overflow: hidden;
+    display: table;
+    table-layout: fixed;
+    border-collapse: collapse;
+    flex-shrink: 0;
 }
+
+    .table thead {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        background-color: #2d4b75;
+        border-radius: 14px 14px 0 0;
+        overflow: hidden;
+    }
 
     .table th {
         background-color: #2d4b75;
@@ -189,13 +221,68 @@ textarea {
         padding: 10px;
         text-align: center;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: none;
     }
+
+        .table th:first-child {
+            border-radius: 14px 0 0 0;
+        }
+
+        .table th:last-child {
+            border-radius: 0 14px 0 0;
+        }
+
+        .table th:nth-child(1),
+        .table td:nth-child(1) {
+            width: 12%;
+        }
+
+        .table th:nth-child(2),
+        .table td:nth-child(2) {
+            width: 23%;
+        }
+
+        .table th:nth-child(3),
+        .table td:nth-child(3) {
+            width: 28%;
+        }
+
+        .table th:nth-child(4),
+        .table td:nth-child(4) {
+            width: 12%;
+        }
+
+        .table th:nth-child(5),
+        .table td:nth-child(5) {
+            width: 8%;
+        }
+
+        .table th:nth-child(6),
+        .table td:nth-child(6) {
+            width: 17%;
+        }
+
+    .table tbody {
+        display: block;
+        width: 100%;
+        max-height: calc(100vh - 500px);
+        overflow-y: auto;
+        border-radius: 0 0 14px 14px;
+    }
+
+        .table tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
 
     .table td {
         padding: 10px;
         border-bottom: 1px solid #ccc;
         text-align: center;
         vertical-align: middle;
+        word-wrap: break-word;
     }
 
     .table tbody tr:hover td {
@@ -206,12 +293,13 @@ tr.selected {
     background-color: #cfe3ff;
 }
 
-/* Botones de la tabla */
 .btn-group-table {
     display: flex;
-    gap: 8px;
+    gap: 3px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    min-width: 140px;
 }
 
     .btn-group-table a.btn,
@@ -242,7 +330,6 @@ tr.selected {
             line-height: 1;
         }
 
-    /* Colores de botones de tabla */
     .btn-group-table .btn-danger {
         background-color: #dc3545;
         color: white;
@@ -270,13 +357,6 @@ tr.selected {
             background-color: #138496;
         }
 
-/* Botón crear usuario */
-.contenedor_personal_medico > div:first-child {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -300,13 +380,49 @@ tr.selected {
         font-size: 18px;
     }
 
+@media (max-width: 768px) {
+    .contenedor-opciones-index {
+        padding: 20px 10px;
+        min-height: auto;
+    }
+
+    .contenedor_personal_medico {
+        max-height: auto;
+        overflow-y: visible;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+        .table td {
+            padding: 8px 5px;
+        }
+
+    .btn-group-table {
+        gap: 4px;
+        min-width: auto;
+    }
+
+        .btn-group-table a.btn,
+        .btn-group-table button {
+            width: 40px;
+            height: 40px;
+        }
+
+            .btn-group-table a.btn i,
+            .btn-group-table button i {
+                font-size: 16px;
+            }
+}
+
 
 /* -------------------------------------------------------------- Estilos Cliente/Create -------------------------------------------------------------*/
 .contenedor-form-clientes {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    min-height: 80vh;
 }
 
 .form-clientes {
@@ -322,6 +438,12 @@ tr.selected {
     }
 
 .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group dropdownList{
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -347,8 +469,24 @@ tr.selected {
     border-radius: 14px;
     font-size: 14px;
     font-family: Arial, sans-serif;
+    text-align: center;
     transition: all 0.3s;
+    height: 44px;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 40px;
 }
+
+select.form-control {
+    background-color: #f7f7f7;
+    cursor: pointer;
+    border-color: #aaa;
+}
+
+    select.form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    }
 
 
 /*------------------------------------------ Estilos Portadas de la aplicación---------------------------------------------------------*/

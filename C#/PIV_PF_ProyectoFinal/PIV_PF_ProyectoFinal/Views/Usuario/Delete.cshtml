@@ -1,8 +1,98 @@
 ﻿
+@model PIV_PF_ProyectoFinal.ViewModels.EliminarUsuario
+
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+
+@if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert @(ViewBag.ValorMensaje == 1 ? "alert-success" : "alert-danger")">
+                        @ViewBag.MensajeProceso
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+    <div class="resultado-busqueda-cliente">
+        <form action="/Usuario/Delete" method="post">
+            <input type="hidden" name="id_usuario" value="@Model.id_usuario" />
+            <h2 class="mt-5">Detalles del registro</h2>
+            <div class="grid-container-details-client">
+                <div class="grid-item-details-client color-gris">
+
+                    <div class="campo-cliente">
+                        <label class="form-label">ID de Usuario</label>
+                        <span class="valor-dato">@Model.id_usuario</span>
+                    </div>
+
+                    <div class="campo-cliente">
+                        <label class="form-label">Nombre completo</label>
+                        <span class="valor-dato">@Model.nombre_completo</span>
+                    </div>
+
+                    <div class="campo-cliente">
+                        <label class="form-label">Correo electrónico</label>
+                        <span class="valor-dato">@Model.correo_electronico</span>
+                    </div>
+
+                    <div class="campo-cliente">
+                        <label class="form-label">Tipo de usuario</label>
+                        <span class="valor-dato">@Model.tipo_usuario</span>
+                    </div>
+
+                    <div class="campo-cliente">
+                        <label class="form-label">Estado</label>
+                        <span class="valor-dato">@Model.estado</span>
+                    </div>
+                </div>
+                <div class="grid-item-foto-perfil">
+                    @{
+                        <img id="foto_perfil" src="~/Media/foto_@(Model.tipo_usuario.ToLower()).png" />
+                    }
+                </div>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que desea eliminar al cliente: @Model.nombre_completo?\nEsta acción es irreversible.')">
+                    <i class="bi bi-trash"></i>Eliminar usuario
+                </button>
+                <a class="btn btn-primary" href="@Url.Action("Index", "Usuario")">Volver</a>
+            </div>
+
+        </form>
+    </div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+            {
+                <text>
+                $('#myModal').modal('show');
+                </text>
+            }
+
+            $('#myModal').on('hidden.bs.modal', function() {
+                $('#id_cliente').val('');
+                $('#nombre_completo').val('');
+                $('#correo_electronico').val('');
+            });
+        });
+    </script>
+}
 

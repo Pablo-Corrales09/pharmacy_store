@@ -4,5 +4,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
+<h1 class="Cliente-titulo-details">Información del colaborador</h1>
+
+
+<div class="grid-container-details-client">
+
+    <div class="grid-item-details-client color-gris">
+        <h2>Detalles del registro</h2>
+        <div class="campo-cliente">
+            <label class="nombre-dato">ID del Cliente:</label>
+            <span class="valor-dato">@Model.id_usuario</span>
+        </div>
+
+        <div class="campo-cliente">
+            <label class="nombre-dato">Nombre del Cliente:</label>
+            <span class="valor-dato">@Model.nombre_completo</span>
+        </div>
+
+        <div class="campo-cliente">
+            <label class="nombre-dato">Correo Electrónico:</label>
+            <span class="valor-dato">@Model.correo_electronico</span>
+        </div>
+
+        <div class="campo-cliente">
+            <label class="nombre-dato">Tipo:</label>
+            <span class="valor-dato">@Model.tipo_usuario</span>
+        </div>
+
+        <div class="campo-cliente">
+            <label class="nombre-dato">Estado:</label>
+            <span class="valor-dato">@Model.estado</span>
+        </div>
+
+    </div>
+
+    <div class="grid-item-foto-perfil">
+        @{ 
+            <img id="foto_perfil" src="~/Media/foto_@(Model.tipo_usuario.ToLower()).png"/>
+        }
+
+    </div>
+
+</div>
+
+<div class="boton_volver_a_gestion">
+    <button type="button" class="btn btn-primary" onclick="window.location='/Usuario/Index'">
+        <i class="bi bi-arrow-left-circle"></i> Volver
+    </button>
+</div>
