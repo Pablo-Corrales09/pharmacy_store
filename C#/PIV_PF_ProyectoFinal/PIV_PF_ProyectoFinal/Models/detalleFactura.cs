@@ -15,13 +15,12 @@ namespace PIV_PF_ProyectoFinal.Models
     public partial class detalleFactura
     {
         public int num_consecutivo { get; set; }
-        public string codigo_factura { get; set; }
+        public int id_factura { get; set; }
         public string codigo_producto { get; set; }
         public int cantidad { get; set; }
         public decimal valor_unitario { get; set; }
         public decimal total_linea { get; set; }
     
         public virtual factura factura { get; set; }
-        public virtual producto producto { get; set; }
     }
 }

@@ -39,11 +39,11 @@
             <form action="/Usuario/Update" method="post" class="form-clientes w-100">
                 <h2>Detalles del registro</h2>
 
-                @Html.HiddenFor(u => u.id_usuario)
+                @Html.HiddenFor(u => u.cedula)
 
                 <div class="campo-cliente">
-                    @Html.LabelFor(u => u.id_usuario, new { @class = "form-label" })
-                    <label class="valor-dato">@Model.id_usuario</label>
+                    @Html.LabelFor(u => u.cedula, new { @class = "form-label" })
+                    <label class="valor-dato">@Model.cedula</label>
                 </div>
 
                 <div class="campo-cliente">
@@ -82,14 +82,15 @@
                 </div>
 
                 <div class="botones d-flex justify-content-between">
-                    <button type="button" class="btn btn-primary" style="border-radius:14px;" onclick="window.location='/Usuario/Index'">
-                        <i class="bi bi-arrow-left-circle"></i> Volver
-                    </button>
-
 
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-floppy"></i> Guardar cambios
                     </button>
+
+                    <button type="button" class="btn btn-primary" style="border-radius:14px;" onclick="window.location='/Usuario/Index'">
+                        <i class="bi bi-arrow-left-circle"></i> Volver
+                    </button>
+
                 </div>
 
             </form>

@@ -13,10 +13,10 @@ namespace PIV_PF_ProyectoFinal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PIV_PF_ProyectoFinalEntities : DbContext
+    public partial class PIV_PF_Proyecto_Final_Entities : DbContext
     {
-        public PIV_PF_ProyectoFinalEntities()
-            : base("name=PIV_PF_ProyectoFinalEntities")
+        public PIV_PF_Proyecto_Final_Entities()
+            : base("name=PIV_PF_Proyecto_Final_Entities")
         {
         }
     
@@ -29,7 +29,9 @@ namespace PIV_PF_ProyectoFinal.Models
         public virtual DbSet<detalleFactura> detalleFactura { get; set; }
         public virtual DbSet<factura> factura { get; set; }
         public virtual DbSet<producto> producto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipoProducto> tipoProducto { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<UsuarioRegistrado> UsuarioRegistrado { get; set; }
     }
 }

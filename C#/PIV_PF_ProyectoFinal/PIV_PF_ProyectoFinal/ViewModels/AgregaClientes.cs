@@ -10,8 +10,8 @@ namespace PIV_PF_ProyectoFinal.ViewModels
     public class AgregaClientes
     {
         [Required]
-        [DisplayName("Número de identificación")]
-        public string id_cliente { get; set; }
+        [DisplayName("Número de cédula")]
+        public string cedula { get; set; }
 
         [Required]
         [DisplayName("Nombre completo")]

@@ -27,19 +27,20 @@
             </div>
         </div>
     </div>
-
 }
 
+@if (Model != null)
+{
     <div class="resultado-busqueda-cliente">
         <form action="/Usuario/Delete" method="post">
-            <input type="hidden" name="id_usuario" value="@Model.id_usuario" />
+            <input type="hidden" name="cedula" value="@Model.cedula" />
             <h2 class="mt-5">Detalles del registro</h2>
             <div class="grid-container-details-client">
                 <div class="grid-item-details-client color-gris">
 
                     <div class="campo-cliente">
                         <label class="form-label">ID de Usuario</label>
-                        <span class="valor-dato">@Model.id_usuario</span>
+                        <span class="valor-dato">@Model.cedula</span>
                     </div>
 
                     <div class="campo-cliente">
@@ -75,6 +76,12 @@
 
         </form>
     </div>
+}
+
+@if (Model == null)
+{
+<h1 class="text-center my-5">Error al cargar el usuario</h1>
+}
 
 
 @section Scripts {
@@ -88,7 +95,7 @@
             }
 
             $('#myModal').on('hidden.bs.modal', function() {
-                $('#id_cliente').val('');
+                $('#cedula').val('');
                 $('#nombre_completo').val('');
                 $('#correo_electronico').val('');
             });

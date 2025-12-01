@@ -10,8 +10,8 @@ namespace PIV_PF_ProyectoFinal.ViewModels
     {
 
         [Required]
-        [Display(Name = "ID del usuario")]
-        public string id_usuario { get; set; }
+        [Display(Name = "Cédula del usuario")]
+        public string cedula { get; set; }
 
         [Display(Name = "Nombre completo")]
         public string nombre_completo { get; set; }

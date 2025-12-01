@@ -31,7 +31,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Cédula</th>
                     <th>Nombre</th>
                     <th>Correo electrónico</th>
                     <th>Tipo</th>
@@ -43,20 +43,20 @@
                 @foreach (var u in Model)
                 {
                     <tr>
-                        <td>@u.id_usuario</td>
+                        <td>@u.cedula </td>
                         <td>@u.nombre_completo</td>
                         <td>@u.correo_electronico</td>
                         <td>@u.tipo_usuario</td>
                         <td>@u.estado</td>
                         <td>
                             <div class="btn-group-table">
-                                <a class="btn btn-warning" href="@Url.Action("Update", "Usuario", new { id = u.id_usuario })">
+                                <a class="btn btn-warning" href="@Url.Action("Update", "Usuario", new { cedula = u.cedula })">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a class="btn btn-danger" href="@Url.Action("Delete", "Usuario", new { id = u.id_usuario })">
+                                <a class="btn btn-danger" href="@Url.Action("Delete", "Usuario", new { cedula = u.cedula })">
                                     <i class="bi bi-trash"></i>
                                 </a>
-                                <a class="btn btn-info" href="@Url.Action("Details", "Usuario", new { id = u.id_usuario })">
+                                <a class="btn btn-info" href="@Url.Action("Details", "Usuario", new { cedula = u.cedula })">
                                     <i class="bi bi-info-circle"></i>
                                 </a>
                             </div>

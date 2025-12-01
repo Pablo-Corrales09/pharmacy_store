@@ -46,7 +46,7 @@
             <h3>Ingrese el número de identificación de un cliente para realizar la busqueda</h3>
 
             <div class="form-group">
-                <input type="text" id="IdCliente" name="id" class="form-input" />
+                <input type="text" cedula="cedula" name="cedula" class="form-input" />
             </div>
 
             <div class="form-group botones-busqueda">
@@ -68,13 +68,13 @@
     <div class="resultado-busqueda-cliente">
         <h3>Resultados de la Búsqueda</h3>
         <form action="/Cliente/EliminarCliente" method="post">
-            <input type="hidden" name="id_cliente" value="@Model.id_cliente" />
+            <input type="hidden" name="cedula" value="@Model.cedula" />
             <div class="grid-container-details-client">
                 <div class="grid-item-details-client color-gris">
                     <h2>Detalles del registro</h2>
                     <div class="campo-cliente">
-                        @Html.LabelFor(c => c.id_cliente, new { @class = "form-label" })
-                        <label class="valor-dato">@Model.id_cliente</label>
+                        @Html.LabelFor(c => c.cedula, new { @class = "form-label" })
+                        <label class="valor-dato">@Model.cedula</label>
                     </div>
                     <div class="campo-cliente">
                         @Html.LabelFor(c => c.nombre_completo, new { @class = "form-label" })
@@ -88,7 +88,7 @@
                 <div class="grid-item-foto-perfil">
                     <img id="foto_perfil" src="~/Media/foto_perfil.png" alt="Foto de perfil" />
                 </div>
-                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que desea eliminar al cliente: @Model.nombre_completo?\nEsta acción es irreversible.')">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('ESTA ACCIÓN ES IRREVESTIBLE\n\n¿Seguro que desea eliminar al cliente: @Model.nombre_completo?\n\n¡¡ADVERTENCIA!! Se eliminarán todos los registros y facturas asociadas a este cliente.')">
                     <i class="bi bi-trash"></i>Eliminar cliente</button>
                 <a class="btn btn-primary" href="@Url.Action("Index", "Cliente")">Volver</a>
             </div>
@@ -109,9 +109,6 @@
             }
 
             $('#myModal').on('hidden.bs.modal', function() {
-                $('#id_cliente').val('');
-                $('#nombre_completo').val('');
-                $('#correo_electronico').val('');
             });
         });
     </script>

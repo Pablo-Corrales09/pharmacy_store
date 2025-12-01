@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="PIV_PF_ProyectoFinalModelStoreContainer" CdmEntityContainer="PIV_PF_ProyectoFinalEntities">
+  <EntityContainerMapping StorageEntityContainer="PIV_PF_ProyectoFinalModelStoreContainer" CdmEntityContainer="PIV_PF_Proyecto_Final_Entities">
     <EntitySetMapping Name="cliente">
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
         </MappingFragment>
@@ -14,7 +15,7 @@
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.detalleFactura">
         <MappingFragment StoreEntitySet="detalleFactura">
           <ScalarProperty Name="num_consecutivo" ColumnName="num_consecutivo" />
-          <ScalarProperty Name="codigo_factura" ColumnName="codigo_factura" />
+          <ScalarProperty Name="id_factura" ColumnName="id_factura" />
           <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="valor_unitario" ColumnName="valor_unitario" />
@@ -25,6 +26,7 @@
     <EntitySetMapping Name="factura">
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.factura">
         <MappingFragment StoreEntitySet="factura">
+          <ScalarProperty Name="id_factura" ColumnName="id_factura" />
           <ScalarProperty Name="codigo_factura" ColumnName="codigo_factura" />
           <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
           <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
@@ -36,17 +38,30 @@
     <EntitySetMapping Name="producto">
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.producto">
         <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
           <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="precio" ColumnName="precio" />
           <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="codigo_tipo" ColumnName="codigo_tipo" />
+          <ScalarProperty Name="id_tipoProducto" ColumnName="id_tipoProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tipoProducto">
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.tipoProducto">
         <MappingFragment StoreEntitySet="tipoProducto">
+          <ScalarProperty Name="id_tipoProducto" ColumnName="id_tipoProducto" />
           <ScalarProperty Name="codigo_tipo" ColumnName="codigo_tipo" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </MappingFragment>
@@ -56,10 +71,22 @@
       <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.usuario">
         <MappingFragment StoreEntitySet="usuario">
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
           <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
           <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioRegistrado">
+      <EntityTypeMapping TypeName="PIV_PF_ProyectoFinalModel.UsuarioRegistrado">
+        <MappingFragment StoreEntitySet="UsuarioRegistrado">
+          <ScalarProperty Name="id_usuarioRegistrado" ColumnName="id_usuarioRegistrado" />
+          <ScalarProperty Name="user" ColumnName="user" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

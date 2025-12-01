@@ -39,16 +39,16 @@ namespace PIV_PF_ProyectoFinal.Controllers
                 {
                     return View("Create", u);
                 }
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    if (db.usuario.Any(x => x.id_usuario == u.id_usuario))
+                    if (db.usuario.Any(x => x.cedula == u.cedula))
                     {
                         ViewBag.ValorMensaje = 0;
                         ViewBag.MensajeProceso = "El usuario con este ID ya está registrado.";
                         return View("Create", u);
                     }
                     var nuevoUsuario = new usuario();
-                    nuevoUsuario.id_usuario = u.id_usuario.ToUpper();
+                    nuevoUsuario.cedula = u.cedula.ToUpper();
                     nuevoUsuario.nombre_completo = u.nombre_completo.ToUpper();
                     nuevoUsuario.correo_electronico = u.correo_electronico.ToLower();
                     nuevoUsuario.tipo_usuario = u.tipo_usuario.ToUpper();
@@ -72,25 +72,30 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //GET: Usuario/Update
         [HttpGet]
-        public ActionResult Update(string id)
+        public ActionResult Update(string cedula)
         {
-            try {
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
-                {
-                    var usuarioDb = db.usuario.Find(id);
+            if (string.IsNullOrEmpty(cedula))
+            {
+                return View((EditarUsuario)null);
+            }
 
-                    if (usuarioDb == null)
+            try {
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                {
+                    var usuario = db.usuario.FirstOrDefault(u => u.cedula == cedula);
+
+                    if (usuario == null)
                     {
                         return View((EditarUsuario)null);
                     }
 
                     var modeloVista = new EditarUsuario
                     {
-                        id_usuario = usuarioDb.id_usuario,
-                        nombre_completo = usuarioDb.nombre_completo,
-                        correo_electronico = usuarioDb.correo_electronico,
-                        tipo_usuario = usuarioDb.tipo_usuario,
-                        estado = usuarioDb.estado
+                        cedula = usuario.cedula,
+                        nombre_completo = usuario.nombre_completo,
+                        correo_electronico = usuario.correo_electronico,
+                        tipo_usuario = usuario.tipo_usuario,
+                        estado = usuario.estado
                     };
 
                     return View(modeloVista);
@@ -109,12 +114,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View((EditarUsuario)null);
+                    return View(colaborador);
                 }
 
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var usuarioEditar = db.usuario.Find(colaborador.id_usuario);
+                    var usuarioEditar = db.usuario.FirstOrDefault(u => u.cedula == colaborador.cedula);
 
                     usuarioEditar.nombre_completo = colaborador.nombre_completo.ToUpper();
                     usuarioEditar.correo_electronico = colaborador.correo_electronico.ToLower();
@@ -125,7 +130,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     TempData["ValorMensaje"] = 1;
                     TempData["MensajeProceso"] = "Colaborador actualizado exitosamente.";
 
-                    return RedirectToAction("Update", new { id = colaborador.id_usuario });
+                    return RedirectToAction("Update", new { colaborador.cedula });
                 }
 
             }
@@ -133,7 +138,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
             {
                 TempData["ValorMensaje"] = 0;
                 TempData["MensajeProceso"] = "Error al eliminar al colaborador.";
-                return RedirectToAction("Update", new { id = colaborador.id_usuario });
+                return RedirectToAction("Update", new { colaborador.cedula });
             }
         }
 
@@ -143,24 +148,24 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //GET: Usuario/Details
         [HttpGet]
-        public ActionResult Details(string id)
+        public ActionResult Details(string cedula)
         {
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            try
             {
-                if (string.IsNullOrEmpty(id))
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    return null;
+                    if (string.IsNullOrEmpty(cedula))
+                    {
+                        return View("Details", null);
+                    }
+                    var usuario = db.usuario.FirstOrDefault(u => u.cedula == cedula);
+                    return View("Details", usuario);
                 }
-                var usuario = db.usuario.Find(id);
-
-                if (usuario == null)
-                {
-                    return View("Details");
-                }
-                return View("Details", usuario);
             }
-            
-
+            catch (Exception)
+            {
+                return View("Details", null);
+            }
         }
 
         //Método privado para obtener la lista de usuarios desde la base de datos
@@ -169,12 +174,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
             List<ListaUsuarios> userList = new List<ListaUsuarios>();
             try
             {
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
                     userList = (from user in db.usuario
                                 select new ListaUsuarios
                                 {
-                                    id_usuario = user.id_usuario,
+                                    cedula = user.cedula,
                                     nombre_completo = user.nombre_completo,
                                     correo_electronico = user.correo_electronico,
                                     tipo_usuario = user.tipo_usuario,
@@ -194,7 +199,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
         {
             try
             {
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
                     var usuario = db.usuario.Find(id);
                     if (usuario == null)
@@ -208,7 +213,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     {
                         var usuarioViewModel = new EditarUsuario
                         {
-                            id_usuario = usuario.id_usuario,
+                            cedula = usuario.cedula,
                             nombre_completo = usuario.nombre_completo,
                             correo_electronico = usuario.correo_electronico,
                             tipo_usuario = usuario.tipo_usuario,
@@ -220,7 +225,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     {
                         var clienteViewModel = new EliminarUsuario
                         {
-                            id_usuario = usuario.id_usuario,
+                            cedula = usuario.cedula,
                             nombre_completo = usuario.nombre_completo,
                             correo_electronico = usuario.correo_electronico,
                             tipo_usuario = usuario.tipo_usuario,
@@ -242,29 +247,29 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //GET: Usuario/Delete
         [HttpGet]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string cedula)
         {
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
-                var clienteDB = db.usuario.Find(id);
+                var usuario = db.usuario.FirstOrDefault(u => u.cedula == cedula);
 
-                if (clienteDB == null)
+                if (usuario == null)
                 {
                     ViewBag.ValorMensaje = 0;
                     ViewBag.MensajeProceso = "Error al eliminar al colaborador.";
                     return RedirectToAction("Index");
                 }
 
-                var modeloVista = new EliminarUsuario
+                var usuarioExistente = new EliminarUsuario
                 {
-                    id_usuario = clienteDB.id_usuario,
-                    nombre_completo = clienteDB.nombre_completo,
-                    correo_electronico = clienteDB.correo_electronico,
-                    tipo_usuario = clienteDB.tipo_usuario,
-                    estado = clienteDB.estado
+                    cedula = usuario.cedula,
+                    nombre_completo = usuario.nombre_completo,
+                    correo_electronico = usuario.correo_electronico,
+                    tipo_usuario = usuario.tipo_usuario,
+                    estado = usuario.estado
                 };
 
-                return View(modeloVista);
+                return View(usuarioExistente);
             }              
         }
 
@@ -278,12 +283,20 @@ namespace PIV_PF_ProyectoFinal.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View("Delete");
+                    return View("Delete", ColaboradorExistente);
                 }
 
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var usuarioEliminar = db.usuario.Find(ColaboradorExistente.id_usuario);
+                    var usuarioEliminar = db.usuario.FirstOrDefault(u => u.cedula == ColaboradorExistente.cedula);
+
+                    if (usuarioEliminar == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "El colaborador que intenta eliminar ya no existe.";
+                        return RedirectToAction("Index");
+                    }
+
                     db.usuario.Remove(usuarioEliminar);
                     db.SaveChanges();
 

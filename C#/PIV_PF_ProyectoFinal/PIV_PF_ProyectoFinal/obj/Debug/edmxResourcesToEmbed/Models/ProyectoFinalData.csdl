@@ -4,7 +4,8 @@
     <Key>
       <PropertyRef Name="id_cliente" />
     </Key>
-    <Property Name="id_cliente" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nombre_completo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="correo_electronico" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="factura" Relationship="Self.fk_factura_cliente" FromRole="cliente" ToRole="factura" />
@@ -14,55 +15,79 @@
       <PropertyRef Name="num_consecutivo" />
     </Key>
     <Property Name="num_consecutivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="codigo_factura" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_factura" Type="Int32" Nullable="false" />
     <Property Name="codigo_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cantidad" Type="Int32" Nullable="false" />
     <Property Name="valor_unitario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_linea" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <NavigationProperty Name="factura" Relationship="Self.fk_codigoFacturaDetalleFactura" FromRole="detalleFactura" ToRole="factura" />
-    <NavigationProperty Name="producto" Relationship="Self.fk_codigoProductoDetalleFactura" FromRole="detalleFactura" ToRole="producto" />
+    <NavigationProperty Name="factura" Relationship="Self.fk_idFacturaDetalleFactura" FromRole="detalleFactura" ToRole="factura" />
   </EntityType>
   <EntityType Name="factura">
     <Key>
-      <PropertyRef Name="codigo_factura" />
+      <PropertyRef Name="id_factura" />
     </Key>
+    <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="codigo_factura" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="fecha_compra" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="id_cliente" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
     <Property Name="metodo_pago" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="sub_total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <NavigationProperty Name="cliente" Relationship="Self.fk_factura_cliente" FromRole="factura" ToRole="cliente" />
-    <NavigationProperty Name="detalleFactura" Relationship="Self.fk_codigoFacturaDetalleFactura" FromRole="factura" ToRole="detalleFactura" />
+    <NavigationProperty Name="detalleFactura" Relationship="Self.fk_idFacturaDetalleFactura" FromRole="factura" ToRole="detalleFactura" />
   </EntityType>
   <EntityType Name="producto">
     <Key>
-      <PropertyRef Name="codigo_producto" />
+      <PropertyRef Name="id_producto" />
     </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="codigo_producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="codigo_tipo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="detalleFactura" Relationship="Self.fk_codigoProductoDetalleFactura" FromRole="producto" ToRole="detalleFactura" />
-    <NavigationProperty Name="tipoProducto" Relationship="Self.fk_codigotipo" FromRole="producto" ToRole="tipoProducto" />
+    <Property Name="id_tipoProducto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tipoProducto" Relationship="Self.id_tipoProducto" FromRole="producto" ToRole="tipoProducto" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="tipoProducto">
     <Key>
-      <PropertyRef Name="codigo_tipo" />
+      <PropertyRef Name="id_tipoProducto" />
     </Key>
+    <Property Name="id_tipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="codigo_tipo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="producto" Relationship="Self.fk_codigotipo" FromRole="tipoProducto" ToRole="producto" />
+    <NavigationProperty Name="producto" Relationship="Self.id_tipoProducto" FromRole="tipoProducto" ToRole="producto" />
   </EntityType>
   <EntityType Name="usuario">
     <Key>
       <PropertyRef Name="id_usuario" />
     </Key>
-    <Property Name="id_usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nombre_completo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="correo_electronico" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tipo_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UsuarioRegistrado" Relationship="Self.FK_UsuarioRegistrado_Usuario" FromRole="usuario" ToRole="UsuarioRegistrado" />
+  </EntityType>
+  <EntityType Name="UsuarioRegistrado">
+    <Key>
+      <PropertyRef Name="id_usuarioRegistrado" />
+    </Key>
+    <Property Name="id_usuarioRegistrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rol" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_UsuarioRegistrado_Usuario" FromRole="UsuarioRegistrado" ToRole="usuario" />
   </EntityType>
   <Association Name="fk_factura_cliente">
     <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
@@ -76,64 +101,68 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_codigoFacturaDetalleFactura">
+  <Association Name="fk_idFacturaDetalleFactura">
     <End Role="factura" Type="Self.factura" Multiplicity="1" />
     <End Role="detalleFactura" Type="Self.detalleFactura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="factura">
-        <PropertyRef Name="codigo_factura" />
+        <PropertyRef Name="id_factura" />
       </Principal>
       <Dependent Role="detalleFactura">
-        <PropertyRef Name="codigo_factura" />
+        <PropertyRef Name="id_factura" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_codigoProductoDetalleFactura">
-    <End Role="producto" Type="Self.producto" Multiplicity="1" />
-    <End Role="detalleFactura" Type="Self.detalleFactura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="producto">
-        <PropertyRef Name="codigo_producto" />
-      </Principal>
-      <Dependent Role="detalleFactura">
-        <PropertyRef Name="codigo_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_codigotipo">
+  <Association Name="id_tipoProducto">
     <End Role="tipoProducto" Type="Self.tipoProducto" Multiplicity="1" />
     <End Role="producto" Type="Self.producto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tipoProducto">
-        <PropertyRef Name="codigo_tipo" />
+        <PropertyRef Name="id_tipoProducto" />
       </Principal>
       <Dependent Role="producto">
-        <PropertyRef Name="codigo_tipo" />
+        <PropertyRef Name="id_tipoProducto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PIV_PF_ProyectoFinalEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_UsuarioRegistrado_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UsuarioRegistrado" Type="Self.UsuarioRegistrado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="UsuarioRegistrado">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PIV_PF_Proyecto_Final_Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="cliente" EntityType="Self.cliente" />
     <EntitySet Name="detalleFactura" EntityType="Self.detalleFactura" />
     <EntitySet Name="factura" EntityType="Self.factura" />
     <EntitySet Name="producto" EntityType="Self.producto" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="tipoProducto" EntityType="Self.tipoProducto" />
     <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <EntitySet Name="UsuarioRegistrado" EntityType="Self.UsuarioRegistrado" />
     <AssociationSet Name="fk_factura_cliente" Association="Self.fk_factura_cliente">
       <End Role="cliente" EntitySet="cliente" />
       <End Role="factura" EntitySet="factura" />
     </AssociationSet>
-    <AssociationSet Name="fk_codigoFacturaDetalleFactura" Association="Self.fk_codigoFacturaDetalleFactura">
+    <AssociationSet Name="fk_idFacturaDetalleFactura" Association="Self.fk_idFacturaDetalleFactura">
       <End Role="factura" EntitySet="factura" />
       <End Role="detalleFactura" EntitySet="detalleFactura" />
     </AssociationSet>
-    <AssociationSet Name="fk_codigoProductoDetalleFactura" Association="Self.fk_codigoProductoDetalleFactura">
-      <End Role="producto" EntitySet="producto" />
-      <End Role="detalleFactura" EntitySet="detalleFactura" />
-    </AssociationSet>
-    <AssociationSet Name="fk_codigotipo" Association="Self.fk_codigotipo">
+    <AssociationSet Name="id_tipoProducto" Association="Self.id_tipoProducto">
       <End Role="tipoProducto" EntitySet="tipoProducto" />
       <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRegistrado_Usuario" Association="Self.FK_UsuarioRegistrado_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="UsuarioRegistrado" EntitySet="UsuarioRegistrado" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

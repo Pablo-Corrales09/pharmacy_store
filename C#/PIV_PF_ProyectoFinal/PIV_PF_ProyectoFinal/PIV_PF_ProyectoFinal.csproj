@@ -153,10 +153,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProyectoFinalData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ProyectoFinalData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tipoProducto.cs">
       <DependentUpon>ProyectoFinalData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
+      <DependentUpon>ProyectoFinalData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioRegistrado.cs">
       <DependentUpon>ProyectoFinalData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

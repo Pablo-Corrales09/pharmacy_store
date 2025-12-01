@@ -14,10 +14,20 @@ namespace PIV_PF_ProyectoFinal.Models
     
     public partial class usuario
     {
-        public string id_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public usuario()
+        {
+            this.UsuarioRegistrado = new HashSet<UsuarioRegistrado>();
+        }
+    
+        public int id_usuario { get; set; }
+        public string cedula { get; set; }
         public string nombre_completo { get; set; }
         public string correo_electronico { get; set; }
         public string tipo_usuario { get; set; }
         public string estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UsuarioRegistrado> UsuarioRegistrado { get; set; }
     }
 }

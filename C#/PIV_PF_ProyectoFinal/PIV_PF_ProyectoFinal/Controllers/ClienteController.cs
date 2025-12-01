@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace PIV_PF_ProyectoFinal.Controllers
 {
     public class ClienteController : Controller
@@ -20,7 +21,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         public ActionResult ObtenerClientes()
         {
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
                 var usuarios = db.cliente.ToList();
                 return View("Index", usuarios);
@@ -47,10 +48,10 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     return View("Create", c);
                 }
 
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
                     cliente nuevoCliente = new cliente();
-                    nuevoCliente.id_cliente = c.id_cliente;
+                    nuevoCliente.cedula = c.cedula;
                     nuevoCliente.nombre_completo = c.nombre_completo.ToUpper();
                     nuevoCliente.correo_electronico = c.correo_electronico.ToLower();
                     db.cliente.Add(nuevoCliente);
@@ -74,12 +75,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
         public ActionResult Read()
         {
             List < ListaClientes > listCli = null;
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
                 listCli = (from client in db.cliente
                             select new ListaClientes
                             {
-                                id_cliente = client.id_cliente,
+                                cedula = client.cedula,
                                 nombre_completo = client.nombre_completo,
                                 correo_electronico = client.correo_electronico
                             }).ToList();
@@ -92,15 +93,15 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
 
         //Obtener objeto cliente por id
-        private cliente ObtenerCliente(string id)
+        private cliente ObtenerCliente(string cedula)
         {
-            using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
-                if (string.IsNullOrEmpty(id))
+                if (string.IsNullOrEmpty(cedula))
                 {
                     return null;
                 }
-                return db.cliente.Find(id);               
+                return db.cliente.FirstOrDefault(u => u.cedula == cedula);
             }
         }
 
@@ -108,16 +109,27 @@ namespace PIV_PF_ProyectoFinal.Controllers
         //Muestra los detalles de un cliente en particular
         //GET: cliente/Details
         [HttpGet]
-        public ActionResult Details(string id)
+        public ActionResult Details(string cedula)
         {
-                var cliente = ObtenerCliente(id);
-
-                if (cliente == null)
+            try
+            {
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    return View("Details");
-                }
-                return View("Details", cliente);
 
+
+
+                    var cliente = db.cliente.FirstOrDefault(u => u.cedula == cedula);
+                    if (cliente == null)
+                    {
+                        return View("Details", null);
+                    }
+                    return View("Details", cliente);
+                }
+            }
+            catch (Exception e)
+            {
+                return View("Read");
+            }
         }
 
 
@@ -130,12 +142,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //GET: cliente/BuscarEdit
         [HttpGet]
-        public ActionResult BuscarCliente(string id, string sourceView)
+        public ActionResult BuscarCliente(string cedula, string sourceView)
         {
             try {
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var cliente = db.cliente.Find(id);
+                    var cliente = db.cliente.FirstOrDefault(u => u.cedula == cedula);
                     if (cliente == null)
                     {
                         ViewBag.ValorMensaje = 0;
@@ -146,7 +158,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     if (sourceView == "Update") { 
                     var clienteViewModel = new EditarCliente
                      {
-                       id_cliente = cliente.id_cliente,
+                       cedula = cliente.cedula,
                        nombre_completo = cliente.nombre_completo,
                        correo_electronico = cliente.correo_electronico
                        };
@@ -155,7 +167,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     else if(sourceView == "Delete") { 
                             var clienteViewModel = new EliminarCliente
                             {
-                                id_cliente = cliente.id_cliente,
+                                cedula = cliente.cedula,
                                 nombre_completo = cliente.nombre_completo,
                                 correo_electronico = cliente.correo_electronico
                             };
@@ -190,12 +202,19 @@ namespace PIV_PF_ProyectoFinal.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View("Update");
+                    return View("Update", ClienteEdit);
                 }
 
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {    
-                    var clienteExistente = db.cliente.Find(ClienteEdit.id_cliente);
+                    var clienteExistente = db.cliente.FirstOrDefault(u => u.cedula == ClienteEdit.cedula);
+
+                    if (clienteExistente == null) { 
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "Cliente no encontrado.";
+                        return View("Update", ClienteEdit);
+                    }
+
                     clienteExistente.nombre_completo= ClienteEdit.nombre_completo.ToUpper();
                     clienteExistente.correo_electronico= ClienteEdit.correo_electronico.ToLower();
                     db.SaveChanges();
@@ -203,7 +222,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     ViewBag.ValorMensaje = 1;
                     ViewBag.MensajeProceso = "Cliente editado exitosamente.";   
                 }
-                return View("Update");
+                return View("Update", ClienteEdit);
             }
                 catch (Exception) 
                 {
@@ -235,24 +254,31 @@ namespace PIV_PF_ProyectoFinal.Controllers
         [HttpPost]     
         public ActionResult EliminarCliente(EliminarCliente ClienteExistente)
         {
-
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return View("Delete");
+                    return View("Delete", ClienteExistente);
                 }
 
-                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var clienteEliminar = db.cliente.Find(ClienteExistente.id_cliente);
+                    var clienteEliminar = db.cliente.FirstOrDefault(u => u.cedula == ClienteExistente.cedula);
+
+                    if (clienteEliminar == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "Cliente no encontrado.";
+                        return View("Delete", ClienteExistente);
+                    }
+                    db.factura.RemoveRange(db.factura.Where(f => f.id_cliente == clienteEliminar.id_cliente));
                     db.cliente.Remove(clienteEliminar);
                     db.SaveChanges();
 
                     ViewBag.ValorMensaje = 1;
                     ViewBag.MensajeProceso = "Cliente eliminado exitosamente.";
                 }
-                return View("Delete");
+                return RedirectToAction("Index", "Cliente");
             }
             catch (Exception)
             {

@@ -9,9 +9,9 @@ namespace PIV_PF_ProyectoFinal.ViewModels
 {
     public class EditarUsuario
     {
-        [Required(ErrorMessage = "El ID es requerido")]
-        [Display(Name = "ID del usuario")]
-        public string id_usuario { get; set; }
+        [Required(ErrorMessage = "La cédula es requerida")]
+        [Display(Name = "Cedula del usuario")]
+        public string cedula { get; set; }
 
         [Required(ErrorMessage = "El nombre completo es requerido")]
         [Display(Name = "Nombre completo")]

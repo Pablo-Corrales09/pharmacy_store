@@ -34,13 +34,13 @@
         @foreach (var u in Model)
         {
             <tr>
-                <td>@u.id_cliente</td>
+                <td>@u.cedula</td>
                 <td>@u.nombre_completo</td>
                 <td>@u.correo_electronico</td>
                 <td>
                     <div class="btn-group-table">
                         <button class="btn btn-info" title="Ver"
-                                onclick="window.location='@Url.Action("Details", "Cliente", new { id = u.id_cliente })'">
+                                onclick="window.location='@Url.Action("Details", "Cliente", new { cedula = u.cedula })'">
                             <i class="bi bi-info-circle"></i>
                         </button>
                     </div>

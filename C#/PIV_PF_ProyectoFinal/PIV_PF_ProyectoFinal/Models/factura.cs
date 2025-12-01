@@ -20,9 +20,10 @@ namespace PIV_PF_ProyectoFinal.Models
             this.detalleFactura = new HashSet<detalleFactura>();
         }
     
+        public int id_factura { get; set; }
         public string codigo_factura { get; set; }
         public System.DateTime fecha_compra { get; set; }
-        public string id_cliente { get; set; }
+        public int id_cliente { get; set; }
         public string metodo_pago { get; set; }
         public decimal sub_total { get; set; }
     

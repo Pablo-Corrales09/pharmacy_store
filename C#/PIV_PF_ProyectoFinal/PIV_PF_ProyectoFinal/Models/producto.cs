@@ -14,20 +14,13 @@ namespace PIV_PF_ProyectoFinal.Models
     
     public partial class producto
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public producto()
-        {
-            this.detalleFactura = new HashSet<detalleFactura>();
-        }
-    
+        public int id_producto { get; set; }
         public string codigo_producto { get; set; }
         public string descripcion { get; set; }
         public decimal precio { get; set; }
         public string estado { get; set; }
-        public string codigo_tipo { get; set; }
+        public int id_tipoProducto { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalleFactura> detalleFactura { get; set; }
         public virtual tipoProducto tipoProducto { get; set; }
     }
 }

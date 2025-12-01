@@ -20,7 +20,8 @@ namespace PIV_PF_ProyectoFinal.Models
             this.factura = new HashSet<factura>();
         }
     
-        public string id_cliente { get; set; }
+        public int id_cliente { get; set; }
+        public string cedula { get; set; }
         public string nombre_completo { get; set; }
         public string correo_electronico { get; set; }
     

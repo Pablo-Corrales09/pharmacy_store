@@ -20,6 +20,7 @@ namespace PIV_PF_ProyectoFinal.Models
             this.producto = new HashSet<producto>();
         }
     
+        public int id_tipoProducto { get; set; }
         public string codigo_tipo { get; set; }
         public string descripcion { get; set; }
     

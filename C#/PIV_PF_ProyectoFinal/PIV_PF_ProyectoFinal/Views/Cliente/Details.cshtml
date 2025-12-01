@@ -4,38 +4,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="Cliente-titulo-details">Información del cliente</h1>
+
+@if (Model != null)
+{
+    <h1 class="Cliente-titulo-details">Información del cliente</h1>
 
 
-<div class="grid-container-details-client">
+    <div class="grid-container-details-client">
 
-    <div class="grid-item-details-client color-gris">
-        <h2>Detalles del registro</h2>
-        <div class="campo-cliente">
-            <label class="nombre-dato">ID del Cliente:</label>
-            <span class="valor-dato">@Model.id_cliente</span>
+        <div class="grid-item-details-client color-gris">
+            <h2>Detalles del registro</h2>
+            <div class="campo-cliente">
+                <label class="nombre-dato">Cédula del cliente:</label>
+                <span class="valor-dato">@Model.cedula</span>
+            </div>
+
+            <div class="campo-cliente">
+                <label class="nombre-dato">Nombre del Cliente:</label>
+                <span class="valor-dato">@Model.nombre_completo</span>
+            </div>
+
+            <div class="campo-cliente">
+                <label class="nombre-dato">Correo Electrónico:</label>
+                <span class="valor-dato">@Model.correo_electronico</span>
+            </div>
         </div>
 
-        <div class="campo-cliente">
-            <label class="nombre-dato">Nombre del Cliente:</label>
-            <span class="valor-dato">@Model.nombre_completo</span>
+        <div class="grid-item-foto-perfil">
+            <img id="foto_perfil" src="~/Media/foto_perfil.png" />
         </div>
 
-        <div class="campo-cliente">
-            <label class="nombre-dato">Correo Electrónico:</label>
-            <span class="valor-dato">@Model.correo_electronico</span>
-        </div>
     </div>
 
-    <div class="grid-item-foto-perfil">
-        <img id="foto_perfil" src="~/Media/foto_perfil.png" />
+    <div class="boton_volver_a_gestion">
+        <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
+            <i class="bi bi-arrow-left-circle"></i> Volver
+        </button>
     </div>
+}
 
-</div>
-
-<div class="boton_volver_a_gestion">
-    <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
-        <i class="bi bi-arrow-left-circle"></i> Volver
-    </button>
-</div>
-
+@if (Model == null)
+{
+    <h1 class="text-center my-5">Error al cargar el cliente</h1>
+}

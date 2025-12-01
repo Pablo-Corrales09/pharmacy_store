@@ -9,8 +9,8 @@ namespace PIV_PF_ProyectoFinal.ViewModels
     public class AgregaUsuarios
     {
         [Required]
-        [Display(Name = "ID del usuario")]
-        public string id_usuario { get; set; }
+        [Display(Name = "Número de cédula")]
+        public string cedula { get; set; }
 
         [Required]
         [Display(Name = "Nombre completo")]

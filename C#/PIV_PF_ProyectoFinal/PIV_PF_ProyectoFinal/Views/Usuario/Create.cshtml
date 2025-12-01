@@ -43,9 +43,9 @@
     <form action="/Usuario/CrearUsuario" method="post" class="form-clientes">
 
         <div class="form-group">
-            @Html.LabelFor(u => u.id_usuario, new { @class = "form-label" })
-            @Html.TextBoxFor(u => u.id_usuario, new { @class = "form-control w-100" })
-            @Html.ValidationMessageFor(u => u.id_usuario, "", new { @class = "text-danger d-block mt-2" })
+            @Html.LabelFor(u => u.cedula, new { @class = "form-label" })
+            @Html.TextBoxFor(u => u.cedula, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(u => u.cedula, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
         <div class="form-group">
@@ -111,7 +111,7 @@
             }
 
             $('#myModal').on('hidden.bs.modal', function() {
-                $('#id_usuario').val('');
+                $('#cedula').val('');
                 $('#nombre_completo').val('');
                 $('#correo_electronico').val('');
                 $('#tipo_usuario').val('');
