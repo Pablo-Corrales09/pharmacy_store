@@ -70,14 +70,74 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
 
-        //POST: Usuario/Update
+        //GET: Usuario/Update
         [HttpGet]
-        public ActionResult Update()
+        public ActionResult Update(string id)
         {
-            return View();
+            try {
+                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                {
+                    var usuarioDb = db.usuario.Find(id);
+
+                    if (usuarioDb == null)
+                    {
+                        return View((EditarUsuario)null);
+                    }
+
+                    var modeloVista = new EditarUsuario
+                    {
+                        id_usuario = usuarioDb.id_usuario,
+                        nombre_completo = usuarioDb.nombre_completo,
+                        correo_electronico = usuarioDb.correo_electronico,
+                        tipo_usuario = usuarioDb.tipo_usuario,
+                        estado = usuarioDb.estado
+                    };
+
+                    return View(modeloVista);
+
+                }
+            }
+            catch (Exception ex){
+                return View((EditarUsuario)null);
+            }
         }
 
-        
+        [HttpPost]
+        public ActionResult Update(EditarUsuario colaborador)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View((EditarUsuario)null);
+                }
+
+                using (PIV_PF_ProyectoFinalEntities db = new PIV_PF_ProyectoFinalEntities())
+                {
+                    var usuarioEditar = db.usuario.Find(colaborador.id_usuario);
+
+                    usuarioEditar.nombre_completo = colaborador.nombre_completo.ToUpper();
+                    usuarioEditar.correo_electronico = colaborador.correo_electronico.ToLower();
+                    usuarioEditar.tipo_usuario = colaborador.tipo_usuario.ToUpper();
+                    usuarioEditar.estado = colaborador.estado.ToUpper();
+                    db.SaveChanges();
+
+                    TempData["ValorMensaje"] = 1;
+                    TempData["MensajeProceso"] = "Colaborador actualizado exitosamente.";
+
+                    return RedirectToAction("Update", new { id = colaborador.id_usuario });
+                }
+
+            }
+            catch (Exception)
+            {
+                TempData["ValorMensaje"] = 0;
+                TempData["MensajeProceso"] = "Error al eliminar al colaborador.";
+                return RedirectToAction("Update", new { id = colaborador.id_usuario });
+            }
+        }
+
+
 
 
 
@@ -146,13 +206,13 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
                     if (sourceView == "Update")
                     {
-                        var usuarioViewModel = new EditarCliente
+                        var usuarioViewModel = new EditarUsuario
                         {
-                            id_cliente = usuario.id_usuario,
+                            id_usuario = usuario.id_usuario,
                             nombre_completo = usuario.nombre_completo,
-                            correo_electronico = usuario.correo_electronico
-                            //tipo_usuario = usuario.tipo_usuario,
-                            //estado = usuario.estado
+                            correo_electronico = usuario.correo_electronico,
+                            tipo_usuario = usuario.tipo_usuario,
+                            estado = usuario.estado
                         };
                         return View(sourceView, usuarioViewModel);
                     }

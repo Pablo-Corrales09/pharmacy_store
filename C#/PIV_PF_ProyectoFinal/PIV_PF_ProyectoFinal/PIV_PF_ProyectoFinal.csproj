@@ -163,6 +163,7 @@
     <Compile Include="ViewModels\AgregaClientes.cs" />
     <Compile Include="ViewModels\AgregaUsuarios.cs" />
     <Compile Include="ViewModels\EditarCliente.cs" />
+    <Compile Include="ViewModels\EditarUsuario.cs" />
     <Compile Include="ViewModels\EliminarCliente.cs" />
     <Compile Include="ViewModels\EliminarUsuario.cs" />
     <Compile Include="ViewModels\ListaClientes.cs" />
