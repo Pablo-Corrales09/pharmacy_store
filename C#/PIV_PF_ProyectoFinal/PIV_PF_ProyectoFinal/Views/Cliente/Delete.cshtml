@@ -1,5 +1,4 @@
-﻿
-@model PIV_PF_ProyectoFinal.ViewModels.EliminarCliente
+﻿@model PIV_PF_ProyectoFinal.ViewModels.ClientesViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -30,7 +29,6 @@
 
 
 @if (Model == null)
-
 {
     <div class="encabezado_clientes">
         <div class="titulos_clientes">
@@ -46,7 +44,7 @@
             <h3>Ingrese el número de identificación de un cliente para realizar la busqueda</h3>
 
             <div class="form-group">
-                <input type="text" cedula="cedula" name="cedula" class="form-input" />
+                <input type="text" id="cedula" name="cedula" class="form-input" placeholder="Ingrese la cédula" />
             </div>
 
             <div class="form-group botones-busqueda">
@@ -64,7 +62,7 @@
 }
 
 @if (Model != null)
-{    
+{
     <div class="resultado-busqueda-cliente">
         <h3>Resultados de la Búsqueda</h3>
         <form action="/Cliente/EliminarCliente" method="post">
@@ -88,8 +86,9 @@
                 <div class="grid-item-foto-perfil">
                     <img id="foto_perfil" src="~/Media/foto_perfil.png" alt="Foto de perfil" />
                 </div>
-                <button type="submit" class="btn btn-danger" onclick="return confirm('ESTA ACCIÓN ES IRREVESTIBLE\n\n¿Seguro que desea eliminar al cliente: @Model.nombre_completo?\n\n¡¡ADVERTENCIA!! Se eliminarán todos los registros y facturas asociadas a este cliente.')">
-                    <i class="bi bi-trash"></i>Eliminar cliente</button>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('ESTA ACCIÓN ES IRREVERTIBLE\n\n¿Seguro que desea eliminar al cliente: @Model.nombre_completo?\n\n¡¡ADVERTENCIA!! Se eliminarán todos los registros y facturas asociadas a este cliente.')">
+                    <i class="bi bi-trash"></i>Eliminar cliente
+                </button>
                 <a class="btn btn-primary" href="@Url.Action("Index", "Cliente")">Volver</a>
             </div>
 

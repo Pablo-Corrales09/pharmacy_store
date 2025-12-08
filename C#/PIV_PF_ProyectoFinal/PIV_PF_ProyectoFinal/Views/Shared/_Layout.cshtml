@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.0/font/bootstrap-icons.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://website-widgets.pages.dev/dist/sienna.min.js" defer></script>
+
+
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -19,10 +23,12 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
+
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
                     <li>@Html.ActionLink("Usuarios", "Seleccion", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <li>@Html.ActionLink("Login", "Ingresar", "Login", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>

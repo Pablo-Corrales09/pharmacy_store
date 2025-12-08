@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PIV_PF_ProyectoFinal.ViewModels
 {
-    public class EditarCliente
+    public class ClientesViewModel
     {
         [Required]
         [DisplayName("Número de cédula")]
@@ -20,6 +20,5 @@ namespace PIV_PF_ProyectoFinal.ViewModels
         [Required]
         [DisplayName("Correo electrónico")]
         public string correo_electronico { get; set; }
-
     }
 }

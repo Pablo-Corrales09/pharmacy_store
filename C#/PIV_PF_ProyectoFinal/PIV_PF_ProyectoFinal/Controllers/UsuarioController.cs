@@ -28,11 +28,11 @@ namespace PIV_PF_ProyectoFinal.Controllers
         //GET: Usuario/Create
         [HttpGet]
         public ActionResult Create() {
-            return View(new AgregaUsuarios());
+            return View(new ViewModels.AgregaUsuarios());
         }
 
         [HttpPost]
-        public ActionResult CrearUsuario(AgregaUsuarios u)
+        public ActionResult CrearUsuario(ViewModels.AgregaUsuarios u)
         {
             try {
                 if (!ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                         ViewBag.MensajeProceso = "El usuario con este ID ya está registrado.";
                         return View("Create", u);
                     }
-                    var nuevoUsuario = new usuario();
+                    var nuevoUsuario = new Models.usuario();
                     nuevoUsuario.cedula = u.cedula.ToUpper();
                     nuevoUsuario.nombre_completo = u.nombre_completo.ToUpper();
                     nuevoUsuario.correo_electronico = u.correo_electronico.ToLower();
@@ -223,7 +223,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     }
                     else if (sourceView == "Delete")
                     {
-                        var clienteViewModel = new EliminarUsuario
+                        var clienteViewModel = new AgregaUsuarios
                         {
                             cedula = usuario.cedula,
                             nombre_completo = usuario.nombre_completo,
@@ -260,7 +260,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     return RedirectToAction("Index");
                 }
 
-                var usuarioExistente = new EliminarUsuario
+                var usuarioExistente = new AgregaUsuarios
                 {
                     cedula = usuario.cedula,
                     nombre_completo = usuario.nombre_completo,
@@ -276,7 +276,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //POST: usuario/Delete
         [HttpPost]
-        public ActionResult Delete(EliminarUsuario ColaboradorExistente)
+        public ActionResult Delete(AgregaUsuarios ColaboradorExistente)
         {
 
             try

@@ -1,0 +1,75 @@
+﻿@model PIV_PF_ProyectoFinal.ViewModels.cLogin
+
+
+@{
+    ViewBag.Title = "Ingresar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert @(ViewBag.ValorMensaje == 1 ? "alert-success" : "alert-danger")">
+                        @ViewBag.MensajeProceso
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<br />
+<div class="loginIngresar">
+    <div class="jumbotron text-center login-header">
+        <h1>Acceso al Sistema</h1>
+        <p class="lead">Ingrese sus credenciales para continuar</p>
+    </div>
+    @using (Html.BeginForm("Ingresar", "Login", FormMethod.Post))
+    {
+        <div class="login-container">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        @Html.LabelFor(u => u.UserUsuario)
+                        @Html.TextBoxFor(u => u.UserUsuario, new { @class = "form-control" })
+                        @Html.ValidationMessage("UserUsuario", new { style = "color:red; font-weight: bold;" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(u => u.CtrUsuario)
+                        @Html.PasswordFor(u => u.CtrUsuario, new { @class = "form-control" })
+                        @Html.ValidationMessage("CtrUsuario", new { style = "color:red; font-weight: bold;" })
+                    </div>
+
+
+                    <div class="login-btn-container w-100">
+                        <input type="submit" class="btn btn-primary w-100" value="Iniciar Sesión" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+ @section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            if ($('#myModal').length) {
+                $('#myModal').modal('show');
+            }
+        });
+    </script>
+}

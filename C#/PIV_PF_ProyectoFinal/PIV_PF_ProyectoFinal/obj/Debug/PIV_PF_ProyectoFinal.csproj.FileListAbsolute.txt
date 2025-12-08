@@ -63,6 +63,8 @@ C:\Users\PC\OneDrive\Documentos\Proyects\PrograIV\C#\PIV_PF_ProyectoFinal\PIV_PF
 C:\Users\PC\OneDrive\Documentos\Proyects\PrograIV\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_P.77E928A3.Up2Date
 C:\Users\PC\OneDrive\Documentos\Proyects\PrograIV\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.dll
 C:\Users\PC\OneDrive\Documentos\Proyects\PrograIV\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.pdb
+C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.csproj.AssemblyReference.cache
+C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.csproj.CoreCompileInputs.cache
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\PIV_PF_ProyectoFinal.dll.config
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\PIV_PF_ProyectoFinal.dll
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\PIV_PF_ProyectoFinal.pdb
@@ -123,8 +125,6 @@ C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\System.Web.WebPages.Razor.xml
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\System.Web.Optimization.xml
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\bin\Antlr3.Runtime.pdb
-C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.csproj.AssemblyReference.cache
-C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.csproj.CoreCompileInputs.cache
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_P.77E928A3.Up2Date
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.dll
 C:\Users\PC\OneDrive\Documentos\Proyects\Pharmacy_store\C#\PIV_PF_ProyectoFinal\PIV_PF_ProyectoFinal\obj\Debug\PIV_PF_ProyectoFinal.pdb

@@ -33,14 +33,14 @@ namespace PIV_PF_ProyectoFinal.Controllers
         //GET: cliente/Create
         [HttpGet]
         public ActionResult Create() {
-            return View(new AgregaClientes());
+            return View(new ClientesViewModel());
         
         }
 
         //Agrega un registro en la tabla 'Cliente' dentro de la base de datos
         //POST: cliente/Create
         [HttpPost]
-        public ActionResult CrearCliente(AgregaClientes c)
+        public ActionResult CrearCliente(ClientesViewModel c)
         {
             try
             {
@@ -74,11 +74,11 @@ namespace PIV_PF_ProyectoFinal.Controllers
         [HttpGet]
         public ActionResult Read()
         {
-            List < ListaClientes > listCli = null;
+            List < ClientesViewModel > listCli = null;
             using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
                 listCli = (from client in db.cliente
-                            select new ListaClientes
+                            select new ClientesViewModel
                             {
                                 cedula = client.cedula,
                                 nombre_completo = client.nombre_completo,
@@ -156,8 +156,8 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     }
                     
                     if (sourceView == "Update") { 
-                    var clienteViewModel = new EditarCliente
-                     {
+                    var clienteViewModel = new ClientesViewModel
+                    {
                        cedula = cliente.cedula,
                        nombre_completo = cliente.nombre_completo,
                        correo_electronico = cliente.correo_electronico
@@ -165,7 +165,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
                         return View(sourceView, clienteViewModel);
                     }
                     else if(sourceView == "Delete") { 
-                            var clienteViewModel = new EliminarCliente
+                            var clienteViewModel = new ClientesViewModel
                             {
                                 cedula = cliente.cedula,
                                 nombre_completo = cliente.nombre_completo,
@@ -196,7 +196,7 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //POST: cliente/EditarCliente
         [HttpPost]
-        public ActionResult EditarCliente(EditarCliente ClienteEdit) {
+        public ActionResult EditarCliente(ClientesViewModel ClienteEdit) {
            
             try
             {
@@ -251,42 +251,48 @@ namespace PIV_PF_ProyectoFinal.Controllers
         }
 
         //POST: cliente/EliminarCliente
-        [HttpPost]     
-        public ActionResult EliminarCliente(EliminarCliente ClienteExistente)
+        //POST: cliente/EliminarCliente
+        [HttpPost]
+        public ActionResult EliminarCliente(string cedula)
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (string.IsNullOrEmpty(cedula))
                 {
-                    return View("Delete", ClienteExistente);
+                    ViewBag.ValorMensaje = 0;
+                    ViewBag.MensajeProceso = "Cédula no válida.";
+                    return View("Delete");
                 }
 
                 using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var clienteEliminar = db.cliente.FirstOrDefault(u => u.cedula == ClienteExistente.cedula);
+                    var clienteEliminar = db.cliente.FirstOrDefault(u => u.cedula == cedula);
 
                     if (clienteEliminar == null)
                     {
                         ViewBag.ValorMensaje = 0;
                         ViewBag.MensajeProceso = "Cliente no encontrado.";
-                        return View("Delete", ClienteExistente);
+                        return View("Delete");
                     }
+
+                    // Eliminar facturas asociadas
                     db.factura.RemoveRange(db.factura.Where(f => f.id_cliente == clienteEliminar.id_cliente));
+
+                    // Eliminar cliente
                     db.cliente.Remove(clienteEliminar);
                     db.SaveChanges();
 
                     ViewBag.ValorMensaje = 1;
                     ViewBag.MensajeProceso = "Cliente eliminado exitosamente.";
                 }
-                return RedirectToAction("Index", "Cliente");
+                return View("Delete");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ViewBag.ValorMensaje = 0;
-                ViewBag.MensajeProceso = "Error al eliminar el cliente.";
-                return View("Delete", ClienteExistente);
+                ViewBag.MensajeProceso = "Error al eliminar el cliente: " + ex.Message;
+                return View("Delete");
             }
-
         }
 
     }//Fin clienteController

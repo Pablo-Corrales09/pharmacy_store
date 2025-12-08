@@ -59,8 +59,6 @@ INSERT [dbo].[UsuarioRegistrado] ([id_usuarioRegistrado], [user], [password], [r
 SET IDENTITY_INSERT [dbo].[usuarioRegistrado] OFF
 GO
 
-SELECT * FROM UsuarioRegistrado;
-GO
 
 
 -- Tabla "cliente" con validación en el tipo de correo.

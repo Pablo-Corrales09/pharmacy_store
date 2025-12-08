@@ -1,4 +1,4 @@
-﻿@model PIV_PF_ProyectoFinal.ViewModels.ClientesViewModel
+﻿@model PIV_PF_ProyectoFinal.ViewModels.TipoProducto
 
 @{
     ViewBag.Title = "Create";
@@ -30,40 +30,33 @@
 
 <div class="encabezado_clientes">
     <div class="titulos_clientes">
-        <h1>Agregar clientes</h1>
-        <h2>Nuevos contactos para crecer</h2>
+        <h1>Agregar tipo de producto</h1>
+        <h2>Incorporación nuevas segmentaciones y posibilidades</h2>
     </div>
-    <img id="portada_registro_clientes" src="~/Media/agregar_clientes.png" />
+    <img id="portada_registro_clientes" src="~/Media/sgt_tipo.png" />
 </div>
 
 
 
 <div class="contenedor-form-clientes">
-    <form action="/Cliente/CrearCliente" method="post" class="form-clientes">
+    <form action="/TipoProducto/Create" method="post" class="form-clientes">
 
         <div class="form-group">
-            @Html.LabelFor(c => c.cedula, new { @class = "form-label" })
-            @Html.TextBoxFor(c => c.cedula, new { @class = "form-control w-100" })
-            @Html.ValidationMessageFor(c => c.cedula, "", new { @class = "text-danger d-block mt-2" })
+            @Html.LabelFor(t => t.codigo_tipo, new { @class = "form-label" })
+            @Html.TextBoxFor(t => t.codigo_tipo, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(t => t.codigo_tipo, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(c => c.nombre_completo, new { @class = "form-label" })
-            @Html.TextBoxFor(c => c.nombre_completo, new { @class = "form-control w-100" })
-            @Html.ValidationMessageFor(c => c.nombre_completo, "", new { @class = "text-danger d-block mt-2" })
+            @Html.LabelFor(t => t.descripcion, new { @class = "form-label" })
+            @Html.TextBoxFor(t => t.descripcion, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(t => t.descripcion, "", new { @class = "text-danger d-block mt-2" })
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(c => c.correo_electronico, new { @class = "form-label" })
-            @Html.TextBoxFor(c => c.correo_electronico, new { @class = "form-control w-100" })
-            @Html.ValidationMessageFor(c => c.correo_electronico, "", new { @class = "text-danger d-block mt-2" })
-        </div>
-
         <div class="form-group">
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-floppy"></i>Agregar
+                <i class="bi bi-floppy"></i>Agregar tipo
             </button>
-            <button type="button" class="btn btn-primary" onclick="window.location='/Cliente/Index'">
+            <button type="button" class="btn btn-primary" onclick="window.location='/TipoProducto/Index'">
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </button>
 
@@ -85,9 +78,8 @@
             }
 
             $('#myModal').on('hidden.bs.modal', function() {
-                $('#cedula').val('');
-                $('#nombre_completo').val('');
-                $('#correo_electronico').val('');
+                $('#codigo_tipo').val('');
+                $('#descripcion').val('');
             });
         });
     </script>
