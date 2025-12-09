@@ -1,0 +1,102 @@
+﻿@model PIV_PF_ProyectoFinal.ViewModels.ProductoVM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert @(ViewBag.ValorMensaje == 1 ? "alert-success" : "alert-danger")">
+                        @ViewBag.MensajeProceso
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="encabezado_clientes">
+    <div class="titulos_clientes">
+        <h1>Agregar tipo de producto</h1>
+        <h2>Incorporación nuevas segmentaciones y posibilidades</h2>
+    </div>
+    <img id="portada_registro_clientes" src="~/Media/sgt_tipo.png" />
+</div>
+
+
+
+<div class="contenedor-form-clientes">
+    <form action="/Producto/Create" method="post" class="form-clientes">
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.codigo_producto, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.codigo_producto, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(p => p.codigo_producto, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(p => p.descripcion, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.descripcion, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(p => p.descripcion, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.precio, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.precio, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(p => p.precio, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.estado, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.estado, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(p => p.estado, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.id_tipoProducto, new { @class = "form-label" })
+            @Html.TextBoxFor(p => p.id_tipoProducto, new { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(p => p.id_tipoProducto, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-floppy"></i>Agregar tipo
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.location='/Producto/Index'">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </button>
+
+        </div>
+
+    </form>
+
+
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+            {
+                <text>
+                $('#myModal').modal('show');
+                </text>
+            }
+
+            $('#myModal').on('hidden.bs.modal', function() {
+                $('#codigo_tipo').val('');
+                $('#descripcion').val('');
+            });
+        });
+    </script>
+}
+

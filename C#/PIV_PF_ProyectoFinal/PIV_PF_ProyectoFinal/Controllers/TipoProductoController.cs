@@ -113,19 +113,15 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
         //POST: TipoProducto/Delete
         [HttpPost]
-        public ActionResult Delete(TipoProducto tipoExistente)
+        public ActionResult EliminarTipo(string codigo_tipo)
         {
 
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View("Delete", tipoExistente);
-                }
 
                 using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
-                    var tipoEliminar = db.tipoProducto.FirstOrDefault(t => t.codigo_tipo == tipoExistente.codigo_tipo);
+                    var tipoEliminar = db.tipoProducto.FirstOrDefault(t => t.codigo_tipo == codigo_tipo);
 
                     if (tipoEliminar == null)
                     {
@@ -143,11 +139,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 ViewBag.ValorMensaje = 0;
                 ViewBag.MensajeProceso = "Error al eliminar el tipo de producto.";
-                return View("Delete", tipoExistente);
+                return View("Delete", codigo_tipo);
             }
 
         }

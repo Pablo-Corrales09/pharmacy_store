@@ -123,6 +123,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\TipoProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,6 +174,7 @@
     <Compile Include="ViewModels\cLogin.cs" />
     <Compile Include="ViewModels\EditarUsuario.cs" />
     <Compile Include="ViewModels\ListaUsuarios.cs" />
+    <Compile Include="ViewModels\ProductoVM.cs" />
     <Compile Include="ViewModels\TipoProducto.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +261,8 @@
     <Content Include="Views\TipoProducto\Index.cshtml" />
     <Content Include="Views\TipoProducto\Create.cshtml" />
     <Content Include="Views\TipoProducto\Delete.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

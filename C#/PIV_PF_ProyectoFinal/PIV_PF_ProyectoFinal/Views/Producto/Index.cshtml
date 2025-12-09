@@ -1,11 +1,9 @@
-﻿@model IEnumerable<PIV_PF_ProyectoFinal.ViewModels.TipoProducto>
-
+﻿@model IEnumerable<PIV_PF_ProyectoFinal.ViewModels.ProductoVM>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
 {
@@ -33,18 +31,23 @@
     <div class="Encabezado_Index_clientes">
         <div class="encabezado_clientes">
             <div class="titulos_clientes">
-                <h1>Tipos de producto</h1>
-                <h2>Segmentación y delimitación de lo medicamento</h2>
+                <h1>Inventario de productos</h1>
+                <h2>Accede fácil y organiza rápido tu stock</h2>
             </div>
             <img id="portada_registro_clientes" src="~/Media/tipos_de_producto.png" />
         </div>
     </div>
     <div class="contenedor_personal_medico">
         <div class="d-flex justify-content-between align-items-center">
-            <button class="btn btn-success" onclick="window.location='@Url.Action("Create", "TipoProducto")'">
-                <i class="bi bi-capsule-pill"></i> Agregar tipo de producto
-            </button>
-            <a class="btn btn-secondary" href="/Producto/Index">
+            <div>
+                <button class="btn btn-primary" onclick="window.location='@Url.Action("Create", "Producto")'">
+                    <i class="bi bi-capsule"></i> Agregar producto
+                </button>
+                <button class="btn btn-success" onclick="window.location='@Url.Action("Index", "TipoProducto")'">
+                    <i class="bi bi-capsule-pill"></i> Gestionar tipos de producto
+                </button>
+            </div>
+            <a class="btn btn-secondary" href="/Home/Index">
                 <i class="bi bi-arrow-left-circle"></i>Volver
             </a>
         </div>
@@ -53,21 +56,27 @@
                 <tr>
                     <th>N° de código</th>
                     <th>Descripción</th>
-                    <th>Acciones</th>
+                    <th>Estado</th>
+                    <th>Precio</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var t in Model)
+                @foreach (var p in Model)
                 {
                     <tr>
-                        <td>@t.codigo_tipo </td>
-                        <td>@t.descripcion</td>
+                        <td>@p.codigo_producto</td>
+                        <td>@p.descripcion</td>
+                        <td>@p.estado</td>
+                        <td>@p.precio</td>
                         <td>
                             <div class="btn-group-table">
-                                <a class="btn btn-warning" href="@Url.Action("Update", "TipoProducto", new { codigo_tipo = t.codigo_tipo })">
+                                <a class="btn btn-warning" href="@Url.Action("Update", "Producto", new { codigo_tipo = p.codigo_producto })">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a class="btn btn-danger" href="@Url.Action("Delete", "TipoProducto", new { codigo_tipo = t.codigo_tipo })">
+                                <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { codigo_tipo = p.codigo_producto})">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <a class="btn btn-danger" href="@Url.Action("Details", "Producto", new { codigo_tipo = p.codigo_producto })">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>
@@ -78,3 +87,4 @@
         </table>
     </div>
 </div>
+
