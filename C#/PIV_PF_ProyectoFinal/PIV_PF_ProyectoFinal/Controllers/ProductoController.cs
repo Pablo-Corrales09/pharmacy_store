@@ -40,17 +40,137 @@ namespace PIV_PF_ProyectoFinal.Controllers
             return ProductList;
         }
 
+        private List<ViewModels.TipoProducto> ObtenerTipoProducto()
+        {
+            List<ViewModels.TipoProducto> TipoProductList = new List<ViewModels.TipoProducto>();
+            try
+            {
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                {
+                    TipoProductList = (from TipoProducto in db.tipoProducto
+                                   select new ViewModels.TipoProducto
+                                   {
+                                       id_tipoProducto = TipoProducto.id_tipoProducto,
+                                       codigo_tipo = TipoProducto.codigo_tipo,
+                                       descripcion = TipoProducto.descripcion,
+
+                                   }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error: " + ex.Message);
+            }
+            return TipoProductList;
+        }
+
+
+        private string ObtenerTipoAsociado(int id_tipoProductoI)
+        {
+            if (id_tipoProductoI <= 0)
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "El ID del tipo de producto no es válido.";
+                return null;
+            }
+
+            try
+            {
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                {
+                    string tipo_producto = (from t in db.tipoProducto
+                                            where t.id_tipoProducto == id_tipoProductoI
+                                            select t.descripcion).FirstOrDefault();
+
+                    if (tipo_producto == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "Tipo de producto no encontrado.";
+                        return null;
+                    }
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Tipo de producto obtenido exitosamente.";
+                    return tipo_producto;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Error al obtener el tipo de producto: " + ex.Message;
+                return null;
+            }
+        }
+
+        //GET: Producto/Details
+        [HttpGet]
+        public ActionResult Details(string codigo_producto)
+        {
+            if (string.IsNullOrEmpty(codigo_producto))
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "El ID del tipo de producto no es válido.";
+                return View("Details", null);
+            }
+            try
+            {
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                {
+                    var producto = db.producto.FirstOrDefault(p => p.codigo_producto == codigo_producto);
+
+                    if (producto == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "El producto no fue encontrado.";
+                        return View("Details", null);
+                    }
+                    var productoVM = new ProductoVM()
+                    {
+                        codigo_producto = producto.codigo_producto,
+                        descripcion = producto.descripcion,
+                        precio = producto.precio,
+                        estado = producto.estado,
+                        id_tipoProducto = producto.id_tipoProducto
+                    };
+
+                    string descripcionTipo = ObtenerTipoAsociado(producto.id_tipoProducto);
+                    ViewBag.DescripcionTipoProducto = descripcionTipo ?? "No asignado";
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Producto cargado exitosamente.";
+
+                    return View("Details", productoVM);
+                }
+            }
+            catch (Exception)
+            {
+                return View("Details", null);
+            }
+        }
+
+
+
         //GET: Producto/Create
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.ListaTipoProducto = new SelectList(ObtenerTipoProducto(), "id_tipoProducto", "descripcion");
             return View(new ViewModels.ProductoVM());
         }
+
+        private void CargarDropdownTipos(int? idSeleccionado = null)
+        {
+            var tipos = ObtenerTipoProducto();
+            ViewBag.ListaTipoProducto = new SelectList(tipos, "id_tipoProducto", "descripcion", idSeleccionado);
+        }
+
 
         //POST: Producto/Create
         [HttpPost]
         public ActionResult Create(ViewModels.ProductoVM p)
         {
+            CargarDropdownTipos(p.id_tipoProducto);
+
+            ObtenerTipoProducto();
             try
             {
                 if (!ModelState.IsValid)
@@ -88,6 +208,9 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
             }
         }
+
+
+       
 
 
     }

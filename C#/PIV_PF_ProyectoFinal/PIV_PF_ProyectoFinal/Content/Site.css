@@ -234,17 +234,17 @@ textarea {
 
         .table th:nth-child(1),
         .table td:nth-child(1) {
-            width: 12%;
+            width: 10%;
         }
 
         .table th:nth-child(2),
         .table td:nth-child(2) {
-            width: 23%;
+            width: 15%;
         }
 
         .table th:nth-child(3),
         .table td:nth-child(3) {
-            width: 28%;
+            width: 12%;
         }
 
         .table th:nth-child(4),
@@ -254,7 +254,7 @@ textarea {
 
         .table th:nth-child(5),
         .table td:nth-child(5) {
-            width: 8%;
+            width: 15%;
         }
 
         .table th:nth-child(6),
@@ -293,13 +293,11 @@ tr.selected {
     background-color: #cfe3ff;
 }
 
-.btn-group-table {
-    display: flex;
-    gap: 3px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    min-width: 140px;
+.btn-group-table .btn {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
     .btn-group-table a.btn,

@@ -34,7 +34,7 @@
                 <h1>Inventario de productos</h1>
                 <h2>Accede fácil y organiza rápido tu stock</h2>
             </div>
-            <img id="portada_registro_clientes" src="~/Media/tipos_de_producto.png" />
+            <img id="portada_registro_clientes" src="~/Media/portada_producto.png" />
         </div>
     </div>
     <div class="contenedor_personal_medico">
@@ -58,6 +58,7 @@
                     <th>Descripción</th>
                     <th>Estado</th>
                     <th>Precio</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,17 +68,17 @@
                         <td>@p.codigo_producto</td>
                         <td>@p.descripcion</td>
                         <td>@p.estado</td>
-                        <td>@p.precio</td>
+                        <td>₡@p.precio</td>
                         <td>
                             <div class="btn-group-table">
-                                <a class="btn btn-warning" href="@Url.Action("Update", "Producto", new { codigo_tipo = p.codigo_producto })">
+                                <a class="btn btn-warning" href="@Url.Action("Update", "Producto", new { codigo_producto = p.codigo_producto })">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { codigo_tipo = p.codigo_producto})">
+                                <a class="btn btn-danger" href="@Url.Action("Delete", "Producto", new { codigo_producto = p.codigo_producto})">
                                     <i class="bi bi-trash"></i>
                                 </a>
-                                <a class="btn btn-danger" href="@Url.Action("Details", "Producto", new { codigo_tipo = p.codigo_producto })">
-                                    <i class="bi bi-trash"></i>
+                                <a class="btn btn-info" href="@Url.Action("Details", "Producto", new { codigo_producto = p.codigo_producto })">
+                                    <i class="bi bi-info"></i>
                                 </a>
                             </div>
                         </td>

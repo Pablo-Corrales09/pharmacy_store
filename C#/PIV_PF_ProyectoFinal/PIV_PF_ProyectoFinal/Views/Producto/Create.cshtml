@@ -1,5 +1,6 @@
 ﻿@model PIV_PF_ProyectoFinal.ViewModels.ProductoVM
 
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -54,17 +55,25 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(p => p.precio, new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.precio, new { @class = "form-control w-100" })
+            <input type="number" id="precio" name="precio" class="form-control w-100" step="0.01" min="0" placeholder="0.00" />
             @Html.ValidationMessageFor(p => p.precio, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">
             @Html.LabelFor(p => p.estado, new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.estado, new { @class = "form-control w-100" })
+            @Html.DropDownListFor(p => p.estado, new List<SelectListItem>
+            {
+                new SelectListItem { Text = "En existencia", Value = "En existencia" },
+                new SelectListItem { Text = "Agotado", Value = "Agotado" }
+            }, "---------- Seleccione un tipo de usuario ---------", new
+            { @class = "form-control w-100" })
             @Html.ValidationMessageFor(p => p.estado, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(p => p.id_tipoProducto, new { @class = "form-label" })
-            @Html.TextBoxFor(p => p.id_tipoProducto, new { @class = "form-control w-100" })
+            <label for="id_tipoProducto" class="form-label">Tipo de Producto</label>
+            @Html.DropDownListFor(p => p.id_tipoProducto,
+                (SelectList)ViewBag.ListaTipoProducto,
+                "----- Seleccionar tipo de producto -----",
+                new { @class = "form-control w-100", id = "id_tipoProducto" })
             @Html.ValidationMessageFor(p => p.id_tipoProducto, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">

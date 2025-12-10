@@ -10,6 +10,10 @@ namespace PIV_PF_ProyectoFinal.ViewModels
     public class TipoProducto
     {
         [Required]
+        [DisplayName("ID del tipo de producto")]
+        public int id_tipoProducto { get; set; }
+
+        [Required]
         [DisplayName("N° de código")]
         public string codigo_tipo { get; set; }
 
