@@ -1,8 +1,7 @@
 ﻿@model PIV_PF_ProyectoFinal.ViewModels.ProductoVM
 
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,19 +27,21 @@
     </div>
 }
 
+@if (Model != null)
+{
+<div class="d-flex justify-content-between align-items-center my-2" style="padding:20px;">
+    <h1>Información del producto</h1>
+    <div class="boton_volver_a_gestion">
 
-<div class="encabezado_clientes">
-    <div class="titulos_clientes">
-        <h1>Agregar tipo de producto</h1>
-        <h2>Incorporación nuevas segmentaciones y posibilidades</h2>
+        <button type="button" class="btn btn-primary" onclick="window.location='/Producto/Index'">
+            <i class="bi bi-arrow-left-circle"></i> Volver
+        </button>
     </div>
-    <img id="portada_registro_clientes" src="~/Media/sgt_tipo.png" />
 </div>
 
 
-
 <div class="contenedor-form-clientes">
-    <form action="/Producto/Create" method="post" class="form-clientes">
+    <form method="post" action="@Url.Action("ActualizarProducto", "Producto")" class="form-clientes">
 
         <div class="form-group">
             @Html.LabelFor(p => p.codigo_producto, new { @class = "form-label" })
@@ -55,7 +56,7 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(p => p.precio, new { @class = "form-label" })
-            <input type="number" id="precio" name="precio" class="form-control w-100" step="0.01" min="0" placeholder="0.00" />
+            @Html.TextBoxFor(p => p.precio, new { @class = "form-control w-100", type = "number", step = "0.01", min = "0" })
             @Html.ValidationMessageFor(p => p.precio, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">
@@ -64,21 +65,21 @@
             {
                 new SelectListItem { Text = "En existencia", Value = "En existencia" },
                 new SelectListItem { Text = "Agotado", Value = "Agotado" }
-            }, "---------- Seleccione un tipo de producto ---------", new
+            }, "---------- Seleccione un tipo de usuario ---------", new
             { @class = "form-control w-100" })
             @Html.ValidationMessageFor(p => p.estado, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">
             <label for="id_tipoProducto" class="form-label">Tipo de Producto</label>
             @Html.DropDownListFor(p => p.id_tipoProducto,
-                (SelectList)ViewBag.ListaTipoProducto,
-                "----- Seleccionar tipo de producto -----",
-                new { @class = "form-control w-100", id = "id_tipoProducto" })
+          (SelectList)ViewBag.ListaTipoProducto,
+          "----- Seleccionar tipo de producto -----",
+          new { @class = "form-control w-100", id = "id_tipoProducto" })
             @Html.ValidationMessageFor(p => p.id_tipoProducto, "", new { @class = "text-danger d-block mt-2" })
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-floppy"></i>Agregar producto
+                <i class="bi bi-floppy"></i> Actuaizar producto
             </button>
             <button type="button" class="btn btn-primary" onclick="window.location='/Producto/Index'">
                 <i class="bi bi-arrow-left-circle"></i> Volver
@@ -90,6 +91,13 @@
 
 
 </div>
+}
+else { 
+
+<h1 class="text-center my-5">Error al cargar el producto</h1>
+
+}
+
 
 @section Scripts {
     <script type="text/javascript">
@@ -108,4 +116,7 @@
         });
     </script>
 }
+
+
+
 

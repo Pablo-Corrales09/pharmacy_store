@@ -252,14 +252,12 @@ namespace PIV_PF_ProyectoFinal.Controllers
             using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
             {
                 var usuario = db.usuario.FirstOrDefault(u => u.cedula == cedula);
-
                 if (usuario == null)
                 {
                     ViewBag.ValorMensaje = 0;
-                    ViewBag.MensajeProceso = "Error al eliminar al colaborador.";
+                    ViewBag.MensajeProceso = "Error al cargar el colaborador.";
                     return RedirectToAction("Index");
                 }
-
                 var usuarioExistente = new AgregaUsuarios
                 {
                     cedula = usuario.cedula,
@@ -268,51 +266,38 @@ namespace PIV_PF_ProyectoFinal.Controllers
                     tipo_usuario = usuario.tipo_usuario,
                     estado = usuario.estado
                 };
-
                 return View(usuarioExistente);
-            }              
+            }
         }
-
 
         //POST: usuario/Delete
         [HttpPost]
         public ActionResult Delete(AgregaUsuarios ColaboradorExistente)
         {
-
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View("Delete", ColaboradorExistente);
-                }
-
                 using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
                 {
                     var usuarioEliminar = db.usuario.FirstOrDefault(u => u.cedula == ColaboradorExistente.cedula);
-
                     if (usuarioEliminar == null)
                     {
                         ViewBag.ValorMensaje = 0;
                         ViewBag.MensajeProceso = "El colaborador que intenta eliminar ya no existe.";
-                        return RedirectToAction("Index");
+                        return View("Delete", ColaboradorExistente);
                     }
-
                     db.usuario.Remove(usuarioEliminar);
                     db.SaveChanges();
-
                     ViewBag.ValorMensaje = 1;
                     ViewBag.MensajeProceso = "Colaborador eliminado exitosamente.";
                     return RedirectToAction("Index");
                 }
-                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ViewBag.ValorMensaje = 0;
                 ViewBag.MensajeProceso = "Error al eliminar al colaborador.";
                 return View("Delete", ColaboradorExistente);
             }
-
         }
     }
 }

@@ -2,6 +2,7 @@
 using PIV_PF_ProyectoFinal.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -69,8 +70,6 @@ namespace PIV_PF_ProyectoFinal.Controllers
         {
             if (id_tipoProductoI <= 0)
             {
-                ViewBag.ValorMensaje = 0;
-                ViewBag.MensajeProceso = "El ID del tipo de producto no es válido.";
                 return null;
             }
 
@@ -84,13 +83,9 @@ namespace PIV_PF_ProyectoFinal.Controllers
 
                     if (tipo_producto == null)
                     {
-                        ViewBag.ValorMensaje = 0;
-                        ViewBag.MensajeProceso = "Tipo de producto no encontrado.";
                         return null;
                     }
 
-                    ViewBag.ValorMensaje = 1;
-                    ViewBag.MensajeProceso = "Tipo de producto obtenido exitosamente.";
                     return tipo_producto;
                 }
             }
@@ -209,8 +204,150 @@ namespace PIV_PF_ProyectoFinal.Controllers
             }
         }
 
+        //GET: Producto/Delete
+        [HttpGet]
+        public ActionResult Delete(string codigo_producto)
+        {
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+            {
+                var productoVM = db.producto.FirstOrDefault(p => p.codigo_producto == codigo_producto);
+                if (productoVM == null)
+                {
+                    ViewBag.ValorMensaje = 0;
+                    ViewBag.MensajeProceso = "Error al cargar el producto.";
+                    return RedirectToAction("Index");
+                }
 
-       
+                var ProductoExistente = new ProductoVM
+                {
+                    codigo_producto = productoVM.codigo_producto,
+                    descripcion = productoVM.descripcion,
+                    estado = productoVM.estado,
+                    precio = productoVM.precio,
+                    id_tipoProducto = productoVM.id_tipoProducto
+                };
+
+                string descripcionTipo = ObtenerTipoAsociado(ProductoExistente.id_tipoProducto);
+                ViewBag.DescripcionTipoProducto = descripcionTipo ?? "No asignado";
+                return View(ProductoExistente);
+            }
+        }
+
+
+
+        //POST: Producto/EliminarProducto
+        [HttpPost]
+        public ActionResult EliminarProducto(string codigo_producto)
+        {
+                try
+                {
+                    using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                    {
+                        var EliminarProducto = db.producto.FirstOrDefault(p => p.codigo_producto == codigo_producto);
+                        if (EliminarProducto == null)
+                        {
+                            ViewBag.ValorMensaje = 0;
+                            ViewBag.MensajeProceso = "El producto que intenta eliminar ya no existe.";
+                            return RedirectToAction("Index");
+                        }
+
+                        db.producto.Remove(EliminarProducto);
+                        db.SaveChanges();
+
+                        ViewBag.ValorMensaje = 1;
+                        ViewBag.MensajeProceso = "Producto eliminado exitosamente.";
+                        return RedirectToAction("Index");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    ViewBag.ValorMensaje = 0;
+                    ViewBag.MensajeProceso = "Error al eliminar el producto.";
+                    return RedirectToAction("Delete", new { codigo_producto });
+                }
+            }
+
+
+        //GET: Producto/Update
+        [HttpGet]
+        public ActionResult Update(string codigo_producto)
+        {
+            
+
+            using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+            {
+                var productoVM = db.producto.FirstOrDefault(p => p.codigo_producto == codigo_producto);
+                if (productoVM == null)
+                {
+                    ViewBag.ValorMensaje = 0;
+                    ViewBag.MensajeProceso = "Error al cargar el producto.";
+                    return RedirectToAction("Index");
+                }
+
+                var ProductoExistente = new ProductoVM
+                {
+                    codigo_producto = productoVM.codigo_producto,
+                    descripcion = productoVM.descripcion,
+                    estado = productoVM.estado,
+                    precio = productoVM.precio,
+                    id_tipoProducto = productoVM.id_tipoProducto
+                };
+
+                CargarDropdownTipos(ProductoExistente.id_tipoProducto);
+
+                string descripcionTipo = ObtenerTipoAsociado(ProductoExistente.id_tipoProducto);
+                ViewBag.DescripcionTipoProducto = descripcionTipo ?? "No asignado";
+                return View(ProductoExistente);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarProducto(ProductoVM productoActualizado)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return RedirectToAction("Update", new { codigo_producto = productoActualizado.codigo_producto });
+                }
+
+                using (PIV_PF_Proyecto_Final_Entities db = new PIV_PF_Proyecto_Final_Entities())
+                {
+                    var productoExistente = db.producto.FirstOrDefault(p => p.codigo_producto == productoActualizado.codigo_producto);
+                    if (productoExistente == null)
+                    {
+                        ViewBag.ValorMensaje = 0;
+                        ViewBag.MensajeProceso = "El producto que intenta actualizar no está disponible.";
+                        return RedirectToAction("Index");
+                    }
+
+
+                    productoExistente.codigo_producto = productoActualizado.codigo_producto.ToUpper();
+                    productoExistente.descripcion = productoActualizado.descripcion.ToUpper();
+                    productoExistente.precio = productoActualizado.precio;
+                    productoExistente.estado = productoActualizado.estado.ToUpper();
+                    productoExistente.id_tipoProducto = productoActualizado.id_tipoProducto;
+
+                    db.SaveChanges();
+
+                    ViewBag.ValorMensaje = 1;
+                    ViewBag.MensajeProceso = "Producto actualizado exitosamente.";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            catch (Exception ex)
+            {
+                ViewBag.ValorMensaje = 0;
+                ViewBag.MensajeProceso = "Error al actualizar el producto.";
+                return RedirectToAction("Update", new { codigo_producto = productoActualizado.codigo_producto });
+            }
+        }
+
+
+
 
 
     }
