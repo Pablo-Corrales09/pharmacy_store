@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\FacturacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -172,7 +173,11 @@
     <Compile Include="ViewModels\AgregaUsuarios.cs" />
     <Compile Include="ViewModels\ClientesViewModel.cs" />
     <Compile Include="ViewModels\cLogin.cs" />
+    <Compile Include="ViewModels\ContFactura.cs" />
+    <Compile Include="ViewModels\DetalleFacturaVM.cs" />
     <Compile Include="ViewModels\EditarUsuario.cs" />
+    <Compile Include="ViewModels\AgregarFactura.cs" />
+    <Compile Include="ViewModels\ListaProductos.cs" />
     <Compile Include="ViewModels\ListaUsuarios.cs" />
     <Compile Include="ViewModels\ProductoVM.cs" />
     <Compile Include="ViewModels\TipoProducto.cs" />
@@ -266,6 +271,8 @@
     <Content Include="Views\Producto\Details.cshtml" />
     <Content Include="Views\Producto\Delete.cshtml" />
     <Content Include="Views\Producto\Update.cshtml" />
+    <Content Include="Views\Facturacion\Index.cshtml" />
+    <Content Include="Views\Facturacion\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

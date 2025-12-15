@@ -1,0 +1,175 @@
+﻿@model PIV_PF_ProyectoFinal.ViewModels.ContFactura
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
+{
+    <div class="modal fade modal-custom" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between align-items-center">
+                    <h4 class="modal-title">Mensaje</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert @(ViewBag.ValorMensaje == 1 ? "alert-success" : "alert-danger")">
+                        @ViewBag.MensajeProceso
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="encabezado_clientes">
+    <div class="titulos_clientes">
+        <h1>Facturación</h1>
+        <h2>Recordá que todos los campos son requeridos</h2>
+    </div>
+    <img id="portada_registro_clientes" src="~/Media/sgt_tipo.png" />
+</div>
+
+
+
+<div class="contenedor-form-clientes">
+    <form action="/Facturacion/Create" method="post" class="form-clientes">
+
+        <!-- Fecha de compra -->
+        <div class="row justify-content-end">
+            <div class="col-md-2 d-flex align-items-center">
+                <div class="form-group w-100">
+                    @Html.LabelFor(f => f.Factura.fecha_compra, new { @class = "form-label d-none" })
+                    <input type="date"
+                           name="Factura.fecha_compra"
+                           value="@Model.Factura.fecha_compra.ToString("yyyy-MM-dd")"
+                           class="form-control"
+                           style="text-align: center; padding-left: 20px;"
+                           readonly />
+                    @Html.ValidationMessageFor(f => f.Factura.fecha_compra, "", new { @class = "text-danger d-block mt-2" })
+                </div>
+            </div>
+        </div>
+        <!-- infomación del cliente -->
+        <div class="form-group">
+            <label for="nombre_completo" class="form-label">Información del cliente</label>
+            @Html.DropDownListFor(c => c.Clientes.nombre_completo,
+                (SelectList)ViewBag.ListaClientes,
+                "----- Seleccione un cliente -----",
+                new { @class = "form-control w-100", id = "nombre_completo" })
+            @Html.ValidationMessageFor(c => c.Clientes.nombre_completo, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <!-- método de pago -->
+        <div class="form-group">
+            @Html.LabelFor(f => f.Factura.metodo_pago, new { @class = "form-label" })
+            @Html.DropDownListFor(f => f.Factura.metodo_pago, new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Efectivo", Value = "Efectivo" },
+                new SelectListItem { Text = "Tarjeta", Value = "Tarjeta" }
+            }, "---------- Seleccione el método de pago ---------", new
+            { @class = "form-control w-100" })
+            @Html.ValidationMessageFor(f => f.Factura.metodo_pago, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <!-- información del producto -->
+        <div class="form-group">
+            <div class="d-flex gap-3 align-items-end">
+                <div style="flex: 0 0 70%;">
+                    <label class="form-label">Información del producto</label>
+                    <select id="descripcion_producto"
+                            name="Productos.descripcion"
+                            class="form-control w-100">
+                        <option value="">----- Seleccione un producto -----</option>
+                        @foreach (var producto in (List<PIV_PF_ProyectoFinal.ViewModels.ListaProductos>)ViewBag.ListaProductos)
+                        {
+                            <option value="@producto.descripcion" data-precio="@producto.precio">
+                                @producto.descripcion
+                            </option>
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(p => p.Productos.descripcion, "", new { @class = "text-danger d-block mt-2" })
+                </div>
+
+                <div style="flex: 0 0 28.5%; margin-top: -50px;">
+                    <label for="precio_producto" class="form-label">Precio</label>
+                    <input type="text"
+                           id="precio_producto"
+                           name="precio_producto"
+                           class="form-control w-100"
+                           readonly
+                           placeholder="0.00" />
+                </div>
+            </div>
+        </div>
+
+        <!-- información cantidad de productos -->
+        <div class="form-group">
+            @Html.LabelFor(d => d.Detalle.cantidad, new { @class = "form-label" })
+            <input type="number" id="cantidad" name="cantidad" class="form-control w-100" step="0" min="0" placeholder="0" />
+            @Html.ValidationMessageFor(d => d.Detalle.cantidad, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(f => f.Factura.sub_total, new { @class = "form-label" })
+            <input type="number" id="sub_total" name="sub_total" class="form-control w-100" step="0" min="0.1" placeholder="0.00" />
+            @Html.ValidationMessageFor(f => f.Factura.sub_total, "", new { @class = "text-danger d-block mt-2" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-floppy"></i>Agregar producto
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.location='/Producto/Index'">
+                <i class="bi bi-arrow-left-circle"></i> Volver
+            </button>
+
+        </div>
+
+    </form>
+
+
+</div>
+
+<script>
+
+    document.getElementById('descripcion_producto').addEventListener('change', function () {
+        var selectedOption = this.options[this.selectedIndex];
+        var precio = selectedOption.getAttribute('data-precio');
+        document.getElementById('precio_producto').value = precio ? '₡' + precio : '';
+        calcularSubtotal();
+    });
+
+
+    document.getElementById('cantidad').addEventListener('change', function () {
+        calcularSubtotal();
+    });
+
+    document.getElementById('cantidad').addEventListener('keyup', function () {
+        calcularSubtotal();
+    });
+
+
+    function calcularSubtotal() {
+        var precioTexto = document.getElementById('precio_producto').value;
+        var cantidad = document.getElementById('cantidad').value;
+
+
+        var precio = parseFloat(precioTexto.replace('₡', '').trim()) || 0;
+        cantidad = parseInt(cantidad) || 0;
+
+
+        var subtotal = precio * cantidad;
+
+        // Mostrar subtotal
+        document.getElementById('sub_total').value = subtotal.toFixed(2);
+    }
+</script>
+
+
