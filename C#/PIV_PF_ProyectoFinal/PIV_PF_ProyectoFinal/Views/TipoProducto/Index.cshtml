@@ -64,9 +64,6 @@
                         <td>@t.descripcion</td>
                         <td>
                             <div class="btn-group-table">
-                                <a class="btn btn-warning" href="@Url.Action("Update", "TipoProducto", new { codigo_tipo = t.codigo_tipo })">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
                                 <a class="btn btn-danger" href="@Url.Action("Delete", "TipoProducto", new { codigo_tipo = t.codigo_tipo })">
                                     <i class="bi bi-trash"></i>
                                 </a>

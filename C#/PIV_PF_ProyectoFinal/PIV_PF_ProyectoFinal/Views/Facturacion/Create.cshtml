@@ -1,10 +1,10 @@
 ﻿@model PIV_PF_ProyectoFinal.ViewModels.ContFactura
 
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @if (ViewBag.ValorMensaje == 1 || ViewBag.ValorMensaje == 0)
 {
     <div class="modal fade modal-custom" id="myModal" role="dialog">
@@ -25,21 +25,27 @@
             </div>
         </div>
     </div>
-}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+                keyboard: false
+            });
+            myModal.show();
+        });
+    </script>
+}
 
 <div class="encabezado_clientes">
     <div class="titulos_clientes">
         <h1>Facturación</h1>
         <h2>Recordá que todos los campos son requeridos</h2>
     </div>
-    <img id="portada_registro_clientes" src="~/Media/sgt_tipo.png" />
+    <img id="portada_registro_clientes" src="~/Media/factura_nueva.png" />
 </div>
 
-
-
 <div class="contenedor-form-clientes">
-    <form action="/Facturacion/Create" method="post" class="form-clientes">
+    <form action="/Facturacion/Create" method="post" class="form-clientes" id="formFactura">
 
         <!-- Fecha de compra -->
         <div class="row justify-content-end">
@@ -56,29 +62,30 @@
                 </div>
             </div>
         </div>
-        <!-- infomación del cliente -->
+
+        <!-- Información del cliente -->
         <div class="form-group">
-            <label for="nombre_completo" class="form-label">Información del cliente</label>
-            @Html.DropDownListFor(c => c.Clientes.nombre_completo,
+            <label for="cedula_cliente" class="form-label">Información del cliente</label>
+            @Html.DropDownListFor(c => c.Clientes.cedula,
                 (SelectList)ViewBag.ListaClientes,
                 "----- Seleccione un cliente -----",
-                new { @class = "form-control w-100", id = "nombre_completo" })
-            @Html.ValidationMessageFor(c => c.Clientes.nombre_completo, "", new { @class = "text-danger d-block mt-2" })
+                new { @class = "form-control w-100", id = "cedula_cliente" })
+            @Html.ValidationMessageFor(c => c.Clientes.cedula, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
-        <!-- método de pago -->
+        <!-- Método de pago -->
         <div class="form-group">
             @Html.LabelFor(f => f.Factura.metodo_pago, new { @class = "form-label" })
             @Html.DropDownListFor(f => f.Factura.metodo_pago, new List<SelectListItem>
             {
-                new SelectListItem { Text = "Efectivo", Value = "Efectivo" },
-                new SelectListItem { Text = "Tarjeta", Value = "Tarjeta" }
+                new SelectListItem { Text = "EFECTIVO", Value = "Efectivo" },
+                new SelectListItem { Text = "TARJETA (INCLUYE RECARGO DEL 2%)", Value = "Tarjeta" }
             }, "---------- Seleccione el método de pago ---------", new
-            { @class = "form-control w-100" })
+            { @class = "form-control w-100", id = "metodo_pago" })
             @Html.ValidationMessageFor(f => f.Factura.metodo_pago, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
-        <!-- información del producto -->
+        <!-- Información del producto -->
         <div class="form-group">
             <div class="d-flex gap-3 align-items-end">
                 <div style="flex: 0 0 70%;">
@@ -87,11 +94,16 @@
                             name="Productos.descripcion"
                             class="form-control w-100">
                         <option value="">----- Seleccione un producto -----</option>
-                        @foreach (var producto in (List<PIV_PF_ProyectoFinal.ViewModels.ListaProductos>)ViewBag.ListaProductos)
+                        @if (ViewBag.ListaProductos != null)
                         {
-                            <option value="@producto.descripcion" data-precio="@producto.precio">
-                                @producto.descripcion
-                            </option>
+                            foreach (var producto in (List<PIV_PF_ProyectoFinal.ViewModels.ListaProductos>)ViewBag.ListaProductos)
+                            {
+                                <option value="@producto.descripcion"
+                                        data-precio="@producto.precio"
+                                        data-codigoproducto="@producto.codigo_producto">
+                                    @producto.descripcion
+                                </option>
+                            }
                         }
                     </select>
                     @Html.ValidationMessageFor(p => p.Productos.descripcion, "", new { @class = "text-danger d-block mt-2" })
@@ -101,75 +113,58 @@
                     <label for="precio_producto" class="form-label">Precio</label>
                     <input type="text"
                            id="precio_producto"
-                           name="precio_producto"
                            class="form-control w-100"
                            readonly
-                           placeholder="0.00" />
+                           placeholder="₡0.00" />
                 </div>
             </div>
+
+            <!-- Campos ocultos críticos para el servidor -->
+            <input type="hidden" id="valor_unitario" name="Detalle.valor_unitario" value="0" />
+            <input type="hidden" id="codigo_producto_hidden" name="Detalle.codigo_producto" value="" />
         </div>
 
-        <!-- información cantidad de productos -->
+        <!-- Cantidad -->
         <div class="form-group">
             @Html.LabelFor(d => d.Detalle.cantidad, new { @class = "form-label" })
-            <input type="number" id="cantidad" name="cantidad" class="form-control w-100" step="0" min="0" placeholder="0" />
+            <input type="number"
+                   id="cantidad"
+                   name="Detalle.cantidad"
+                   class="form-control w-100"
+                   min="1"
+                   step="1"
+                   value="1"
+                   required />
             @Html.ValidationMessageFor(d => d.Detalle.cantidad, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
+        <!-- Subtotal -->
         <div class="form-group">
             @Html.LabelFor(f => f.Factura.sub_total, new { @class = "form-label" })
-            <input type="number" id="sub_total" name="sub_total" class="form-control w-100" step="0" min="0.1" placeholder="0.00" />
+            <input type="number"
+                   id="sub_total"
+                   name="Factura.sub_total"
+                   class="form-control w-100"
+                   step="0.01"
+                   min="0"
+                   placeholder="₡0.00"
+                   readonly />
             @Html.ValidationMessageFor(f => f.Factura.sub_total, "", new { @class = "text-danger d-block mt-2" })
         </div>
 
+        <!-- Botones -->
         <div class="form-group">
             <button type="submit" class="btn btn-success">
-                <i class="bi bi-floppy"></i>Agregar producto
+                <i class="bi bi-floppy"></i> Crear factura
             </button>
-            <button type="button" class="btn btn-primary" onclick="window.location='/Producto/Index'">
+            <button type="button" class="btn btn-primary" onclick="window.location='/Facturacion/Index'">
                 <i class="bi bi-arrow-left-circle"></i> Volver
             </button>
-
         </div>
 
     </form>
-
-
 </div>
 
-<script>
-
-    document.getElementById('descripcion_producto').addEventListener('change', function () {
-        var selectedOption = this.options[this.selectedIndex];
-        var precio = selectedOption.getAttribute('data-precio');
-        document.getElementById('precio_producto').value = precio ? '₡' + precio : '';
-        calcularSubtotal();
-    });
-
-
-    document.getElementById('cantidad').addEventListener('change', function () {
-        calcularSubtotal();
-    });
-
-    document.getElementById('cantidad').addEventListener('keyup', function () {
-        calcularSubtotal();
-    });
-
-
-    function calcularSubtotal() {
-        var precioTexto = document.getElementById('precio_producto').value;
-        var cantidad = document.getElementById('cantidad').value;
-
-
-        var precio = parseFloat(precioTexto.replace('₡', '').trim()) || 0;
-        cantidad = parseInt(cantidad) || 0;
-
-
-        var subtotal = precio * cantidad;
-
-        // Mostrar subtotal
-        document.getElementById('sub_total').value = subtotal.toFixed(2);
-    }
-</script>
-
-
+@section Scripts {
+    <script src="~/Scripts/calculoFactura.js"></script>
+}

@@ -9,6 +9,9 @@ namespace PIV_PF_ProyectoFinal.ViewModels
 {
     public class ClientesViewModel
     {
+        [DisplayName("ID del cliente")]
+        public int id_cliente { get; set; }
+
         [Required]
         [DisplayName("Número de cédula")]
         public string cedula { get; set; }

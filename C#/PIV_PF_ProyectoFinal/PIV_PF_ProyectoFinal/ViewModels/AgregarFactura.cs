@@ -8,6 +8,8 @@ namespace PIV_PF_ProyectoFinal.ViewModels
 {
     public class AgregarFactura
     {
+        public int id_factura { get; set; }
+
         [Required(ErrorMessage = "El código de factura es requerido")]
         [StringLength(50, ErrorMessage = "El código no puede exceder 50 caracteres")]
         [Display(Name = "Número de factura")]

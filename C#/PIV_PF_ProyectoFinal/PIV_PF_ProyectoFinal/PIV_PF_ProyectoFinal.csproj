@@ -177,6 +177,7 @@
     <Compile Include="ViewModels\DetalleFacturaVM.cs" />
     <Compile Include="ViewModels\EditarUsuario.cs" />
     <Compile Include="ViewModels\AgregarFactura.cs" />
+    <Compile Include="ViewModels\ListaFacturas.cs" />
     <Compile Include="ViewModels\ListaProductos.cs" />
     <Compile Include="ViewModels\ListaUsuarios.cs" />
     <Compile Include="ViewModels\ProductoVM.cs" />
@@ -226,6 +227,7 @@
       <DependentUpon>ProyectoFinalData.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\calculoFactura.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
